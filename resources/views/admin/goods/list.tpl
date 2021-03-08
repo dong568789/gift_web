@@ -9,25 +9,23 @@
 <{/block}>
 
 <{block "table-th-plus"}>
+<th>别名</th>
 <th>标题</th>
-<th>分类</th>
-<th>账号类型</th>
-<th>数量</th>
-<th>库存</th>
-<th>销量</th>
+<th>积分</th>
 <th>单价</th>
+<th>原始价格</th>
+<th>排序</th>
 <th>状态</th>
 <{/block}>
 
 <!-- DataTable的Block -->
 <{block "table-td-plus"}>
+<td data-from="alias">{{data}}</td>
 <td data-from="title">{{data}}</td>
-<td data-from="goods_category">{{data.title}}</td>
-<td data-from="account_type">{{data.title}}</td>
-<td data-from="number">{{data}}</td>
-<td data-from="inventory">{{data}}</td>
-<td data-from="sales">{{data}}</td>
-<td data-from="price">{{data}}</td>
+<td data-from="integral">{{data.title}}</td>
+<td data-from="price">{{data.title}}</td>
+<td data-from="original_price">{{data}}</td>
+<td data-from="order">{{data}}</td>
 <td data-from="goods_status">{{data.title}}</td>
 <{/block}>
 

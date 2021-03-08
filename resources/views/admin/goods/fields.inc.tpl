@@ -7,6 +7,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-md-3 control-label" for="alias">别名ID</label>
+			<div class="col-md-9">
+				<input type="text" id="alias" name="alias" class="form-control" placeholder="请输入别名ID" value="<{$_data.alias}>">
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-md-3 control-label" for="number">每套数量</label>
 			<div class="col-md-9">
 				<input type="number" id="number" name="number" class="form-control" placeholder="请输入数量"

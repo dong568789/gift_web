@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 
-use App\Repositories\GoodsRepository;
+use App\Repositories\PayParamRepository;
 
-class GoodsController extends Controller
+class PayParamController extends Controller
 {
-    protected $keys = ['title', 'alias', 'integral', 'inventory', 'original_price', 'price', 'cover',
-        'att_ids', 'order', 'description', 'goods_status', 'content', 'attr'];
+    protected $keys = ['pay_type', 'param_status', 'value'];
 
     protected $repo;
 
-    public function __construct(GoodsRepository $repo)
+    public function __construct(PayParamRepository $repo)
     {
         $this->repo = $repo;
     }
@@ -27,7 +26,7 @@ class GoodsController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		return $this->view('admin.goods.list');
+		return $this->view('admin.payParam.list');
 	}
 
     public function data(Request $request)
@@ -44,49 +43,49 @@ class GoodsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $goods = $this->repo->find($id);
-        if (empty($goods))
+        $payParam = $this->repo->find($id);
+        if (empty($payParam))
             return $this->failure_notexists();
 
-        $this->_data = $goods;
-        return !$request->offsetExists('of') ? $this->view('admin.goods.show') : $this->api($goods->toArray());
+        $this->_data = $payParam;
+        return !$request->offsetExists('of') ? $this->view('admin.payParam.show') : $this->api($payParam->toArray());
     }
 
     public function create()
     {
         $this->_data = [];
-        $this->_validates = $this->censorScripts('goods.store', $this->keys);
-        return $this->view('admin.goods.create');
+        $this->_validates = $this->censorScripts('payParam.store', $this->keys);
+        return $this->view('admin.payParam.create');
     }
 
     public function store(Request $request)
     {
-        $data = $this->censor($request, 'goods.store', $this->keys);
+        $data = $this->censor($request, 'payParam.store', $this->keys);
 
-        $goods = $this->repo->store($data);
-        return $this->success('', url('admin/goods'));
+        $payParam = $this->repo->store($data);
+        return $this->success('', url('admin/pay-param'));
     }
 
     public function edit($id)
     {
-        $goods = $this->repo->find($id);
-        if (empty($goods))
+        $payParam = $this->repo->find($id);
+        if (empty($payParam))
             return $this->failure_notexists();
 
-        $this->_validates = $this->censorScripts('goods.store', $this->keys);
-        $this->_data = $goods;
-        return $this->view('admin.goods.edit');
+        $this->_validates = $this->censorScripts('payParam.store', $this->keys);
+        $this->_data = $payParam;
+        return $this->view('admin.payParam.edit');
     }
 
     public function update(Request $request, $id)
     {
-        $goods = $this->repo->find($id);
-        if (empty($goods))
+        $payParam = $this->repo->find($id);
+        if (empty($payParam))
             return $this->failure_notexists();
 
-        $data = $this->censor($request, 'goods.store', $this->keys, $goods);
+        $data = $this->censor($request, 'payParam.store', $this->keys, $payParam);
 
-        $goods = $this->repo->update($goods, $data);
+        $payParam = $this->repo->update($payParam, $data);
         return $this->success();
     }
 

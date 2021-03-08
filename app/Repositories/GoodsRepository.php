@@ -4,12 +4,22 @@ namespace App\Repositories;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Addons\Core\Contracts\Repository;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Goods;
 
 class GoodsRepository extends Repository {
+
+    protected function separateData($data)
+    {
+        $attrKey = ['attr'];
+        $attr = Arr::only($data, $attrKey);
+        $data = Arr::except($data, $attrKey);
+
+       return compact('data', 'attr');
+    }
 
 	public function prePage()
 	{
@@ -28,16 +38,33 @@ class GoodsRepository extends Repository {
 
 	public function store(array $data)
 	{
-		return DB::transaction(function() use ($data) {
+	    $d = $this->separateData($data);
+	    extract($d);
+		return DB::transaction(function() use ($data, $attr) {
 			$model = Goods::create($data);
+			if (!empty($attr)) {
+                foreach ($attr as $v){
+                    if (empty($v['title'])) continue;
+                    $model->attr()->create(['title' => $v['title'], 'value' => json_encode($v['value'])]);
+                }
+            }
 			return $model;
 		});
 	}
 
 	public function update(Model $model, array $data)
 	{
-		return DB::transaction(function() use ($model, $data){
+        $d = $this->separateData($data);
+        extract($d);
+		return DB::transaction(function() use ($model, $data, $attr){
 			$model->update($data);
+
+            $model->attr()->detach();
+            foreach ($attr as $v){
+                if (empty($v['title'])) continue;
+                $model->attr()->create(['title' => $v['title'], 'value' => json_encode($v['value'])]);
+            }
+
 			return $model;
 		});
 	}

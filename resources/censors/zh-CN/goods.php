@@ -6,16 +6,20 @@ return [
             'name' => '标题',
             'rules' => 'required',
         ],
-        'number' => [
-            'name' => '每套数量',
+        'integral' => [
+            'name' => '积分',
             'rules' => 'numeric',
         ],
-        'goods_category' => [
-            'name' => '分类',
+        'alias' => [
+            'name' => '别名ID',
+            'rules' => 'required',
+        ],
+        'price' => [
+            'name' => '单价',
             'rules' => 'numeric',
         ],
-        'account_type' => [
-            'name' => '账号类型',
+        'original_price' => [
+            'name' => '原始单价',
             'rules' => 'numeric',
         ],
         'inventory' => [
@@ -26,11 +30,7 @@ return [
             'name' => '销量',
             'rules' => 'nullable|numeric',
         ],
-        'price' => [
-            'name' => '单价',
-            'rules' => 'numeric',
-        ],
-        'cover_id' => [
+        'cover' => [
             'name' => '封面',
             'rules' => 'nullable|numeric',
         ],

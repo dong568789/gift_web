@@ -10,19 +10,6 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-4">
-		<label class="col-md-3 control-label" for="goods_category">分类</label>
-		<div class="col-md-9">
-			<div class="input-group">
-				<select name="f[goods_category]" id="goods_category" class="form-control">
-					<option value="">请选择</option>
-					<{foreach catalog_search('fields.goods_category', 'children') as $item}>
-				<option value="<{$item.id}>" <{if $_filters.goods_category.eq == $item.id}>selected<{/if}>><{$item.title}></option>
-					<{/foreach}>
-				</select>
-			</div>
-		</div>
-	</div>
-	<div class="form-group col-sm-4">
 		<label class="col-md-3 control-label" for="goods_status">状态</label>
 		<div class="col-md-9">
 			<div class="input-group">

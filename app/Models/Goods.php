@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\AttachmentCastTrait;
+use App\Model;
 
 class Goods extends Model
 {
@@ -12,9 +12,15 @@ class Goods extends Model
 
     protected $casts = [
         'goods_category' => 'catalog',
-        'account_type' => 'catalog',
         'goods_status' => 'catalog',
-        'cover_id' => 'attachment'
+        'cover' => 'attachment',
+        'att_ids' => 'array',
     ];
 
+    public function attr()
+    {
+        return $this->hasMany("App\\Models\\GoodsAttr", 'gid', 'id');
+    }
 }
+
+

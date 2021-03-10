@@ -1,0 +1,248 @@
+body{
+	background-color: #F6F6F6;
+}
+.content{
+	width: 100%;
+}
+.top_box{
+	width: 100%;
+	position: relative;
+}
+.c_Img{
+	display: block;
+	width: 100%;
+}
+.top{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px 0;
+	background-color: rgba(0,0,0,.56);
+}
+.t_Img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0.9rem;
+	margin-left: 0.8rem;
+	margin-right: 0.6rem;
+}
+.t_txt{
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(100% - 3rem);
+	font-size: 0.5rem;
+	color: #FFFFFF;
+}
+.top_user{
+	width: 84%;
+	padding: 25px 3%;
+	position: absolute;
+	top: 2.3rem;
+	left: 0;
+	right: 0;
+	margin:0 auto;
+	background-color: #fff;
+	border-radius: 10px;
+}
+.userImg{
+	display: inline-block;
+	vertical-align: middle;
+	width: 2rem;
+}
+.userbox{
+	width: calc(100% - 7rem);
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 6px;
+}
+
+.u1{
+	width: 100%;
+	font-size: 0.5rem;
+}
+.u2{
+	width: 100%;
+	font-size: 1rem;
+	font-family: 'Source Han Sans CN';
+	font-weight: 900;
+	height: 32px;
+	line-height: 32px;
+}
+.userbut{
+	display: inline-block;
+	vertical-align: middle;
+	width: 3.6rem;
+	text-align: center;
+	font-size: 0.7rem;
+	padding: 5px 0;
+	color: #fff;
+	border-radius: 35px;
+	background: linear-gradient(-90deg,#FF1D86,#FF2A6E);
+}
+
+/*轮播and时间*/
+
+.swiper_box{
+	width: 100%;
+	background-color: #F12E6E;
+	padding: 10px 0;
+	font-size: 0;
+}
+.swiper1{
+	display: inline-block;
+	vertical-align: middle;
+	width: 60%;
+
+}
+.swiper{
+	width: 88%;
+	height: 30px;
+	line-height: 26px;
+	margin: 0px auto 0;
+	font-size: 0.6rem;
+	overflow: hidden;
+	background: rgba(0,0,0,.2);
+	border-radius: 35px;
+}
+.swiper-slide img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	border-radius: 50%;
+}
+.swiper-slide p{
+	display: inline-block;
+	vertical-align: middle;
+	width: 95%;
+	margin-left: 5px;
+	font-size: 0.4rem;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #fff;
+	text-overflow: ellipsis;
+}
+.time_box{
+	display: inline-block;
+	vertical-align: middle;
+	width: 40%;
+	text-align: center;
+}
+.time_txt{
+	font-size: 0.5rem;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	color: #fff;
+}
+.time_t1{
+    display: inline-block;
+    vertical-align: middle;
+    background: rgba(0,0,0,.4);
+    color: #fff;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    font-size: 0.4rem;
+    border-radius: 50%;
+    font-family: 'Source Han Sans CN';
+}
+
+.time_t2{
+	display: inline-block;
+	vertical-align: middle;
+	color: #fff;
+	font-size: 0.4rem;
+	margin:0 4px;
+}
+/*内容*/
+.middle_box{
+	width: 100%;
+	padding-top: 10px;
+}
+.hen{
+	position: relative;
+	width: 100%;
+}
+.he1{
+	width: 30%;
+	font-size: 0.8rem;
+	color: #191919;
+	font-weight:400;
+	position: relative;
+	z-index: 1;
+	background-color: #F6F6F6;
+	text-align: center;
+	margin: 0 auto;
+}
+.he2{
+	position: absolute;
+	top: 45%;
+	width: 60%;
+	height: 1px;
+	background-color: #191919;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.box{
+	position: relative;
+	width: 90%;
+	margin: 10px auto 0;
+	font-size: 0;
+	padding-bottom: 10px;
+	background-color: #fff; 
+	overflow: hidden;
+	border-radius: 8px;
+}
+.bImg{
+	display: block;
+	width: 100%;
+	height: 260px;
+}
+.bTxt{
+	width: 95%;
+	margin: 0 auto;
+	color: #868998;
+	font-size: 0.6rem;
+}
+.bprice{
+	display: inline-block;
+	vertical-align: middle;
+	width: 95%;
+	margin: 5px auto 0;
+	font-size: 0;
+}
+.bpul{
+	display: inline-block;
+	vertical-align: middle;
+	color: #FF0067;
+	width: 60%;
+	margin-left: 2.5%;
+}
+.bp1{
+	display: inline-block;
+	vertical-align: bottom;
+	font-size: 0.4rem;
+}
+.bp2{
+	display: inline-block;
+	height: 1rem;
+	line-height: 1rem;
+	font-weight: 900;
+	font-size: 1rem;
+}
+.bput{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30%;
+	text-align: center;
+	font-size: 0.5rem;
+	color: #fff;
+	background-color: #FF0067;
+	margin-left: 5%;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 35px;
+}

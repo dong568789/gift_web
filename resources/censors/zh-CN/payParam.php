@@ -2,6 +2,10 @@
 
 return [
     'store' => [
+        'mark' => [
+            'name' => '账户名',
+            'rules' => 'required',
+        ],
         'pay_type' => [
             'name' => '支付方式',
             'rules' => 'required|catalog:fields.pay_type',

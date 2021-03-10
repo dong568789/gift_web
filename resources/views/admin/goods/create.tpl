@@ -5,9 +5,11 @@
     <{/block}>
 
 <{block "inline-script-plus"}>
-    $('#cover_id').uploader();
+    $('#cover').uploader();
     var $editor_content = UE.getEditor('content',$.ueditor_default_setting.simple);
-
+    $('#att_ids').uploader({
+    filelimit: 20
+    });
     <{/block}>
 <{block "title"}>产品<{/block}>
 <{block "name"}>goods<{/block}>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Addons\Core\Contracts\Repository;
 use Illuminate\Database\Eloquent\Model;
 
-use App\GoodsAttr;
+use App\Models\GoodsAttr;
 
 class GoodsAttrRepository extends Repository {
 

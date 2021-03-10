@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->integer('id', true);
             $table->string('order_id')->unique()->comment="";
             $table->integer('gid')->index()->comment="";
-            $table->json('goods_type')->nullable()->comment="";
             $table->decimal('amount', 8, 1)->default(0)->comment="";
             $table->integer('number')->default(0)->comment="";
             $table->string('third_id')->nullable()->comment="三方";
@@ -41,8 +40,6 @@ class CreateOrdersTable extends Migration
 
             $table->timestamps();
         });
-
-
     }
 
 

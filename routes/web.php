@@ -31,7 +31,8 @@ $router->group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['a
 		'member' => 'MemberController',
 		'goods' => 'GoodsController',
 		'order' => 'OrderController',
-		'account' => 'AccountController',
+		'pay-ali' => 'PayAliController',
+		'pay-wx' => 'PayWxController',
 		'setting' => 'SettingController',
 	]);
 	$router->get('/', 'HomeController@index')->name('admin-index');

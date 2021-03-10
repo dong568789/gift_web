@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use Addons\Core\Contracts\Repository;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Goods;
+use App\Models\Goods;
 
 class GoodsRepository extends Repository {
 

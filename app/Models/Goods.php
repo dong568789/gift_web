@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Model;
+use Plugins\Attachment\App\Tools\Helpers;
 
 class Goods extends Model
 {
@@ -11,15 +12,19 @@ class Goods extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'goods_category' => 'catalog',
         'goods_status' => 'catalog',
         'cover' => 'attachment',
         'att_ids' => 'array',
     ];
 
-    public function attr()
+
+    public function getAttachmentUrlsAttribute()
     {
-        return $this->hasMany("App\\Models\\GoodsAttr", 'gid', 'id');
+        $r = [];
+        if (is_array($this->att_ids))
+            foreach ($this->att_ids as $key => $value)
+                $r[$key] = Helpers::getUrl($value);
+        return $r;
     }
 }
 

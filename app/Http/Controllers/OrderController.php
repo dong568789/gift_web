@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tools\Payment;
 use Carbon\Carbon;
 use App\Tools\Payment\FanQie;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class OrderController extends CoreController
 	 */
 	public function store(Request $request)
 	{
-	    $keys = ['number', 'gid', 'contact', 'pay_type'];
+	    $keys = ['number', 'gid', 'mark', 'pay_type'];
 
         $data = $this->censor($request, 'order.store', $keys);
 
@@ -42,22 +43,18 @@ class OrderController extends CoreController
         $data['order_id'] = $oRepo->createOrderSn();
         $data['amount'] = round($data['number'] * $goods->price, 2);
         $data['order_status'] = catalog_search('status.order_status.normal', 'id');
-        $data['send_account'] = catalog_search('status.send_account.none', 'id');
         $data['goods_desc'] = $goods->title;
         $data['pay_type'] = $data['pay_type'];
         $data['ip'] = $request->getClientIp();
 
         $order = $oRepo->store($data);
+        $payment = new Payment();
 
-        $order->callback_url = url('order/callback');
-        $fanQie = new FanQie();
-        $result = $fanQie->run($order);
-
-        if ($result['status']) {
-            return redirect($result['data']);
+        try{
+            return $result = $payment->run($order);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
         }
-
-        return $result['message'];
 	}
 
 	public function callback(Request $request)

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Model;
+
 class Order extends Model
 {
     protected $guarded = ['id'];
@@ -13,12 +15,12 @@ class Order extends Model
 
     public function goods()
     {
-        return $this->belongsTo("App\\Goods", "gid", "id");
+        return $this->belongsTo("App\\Models\\Goods", "gid", "id");
     }
 
     public function mark()
     {
-        return $this->hasOne("App\\OrderMark", 'oid', 'id');
+        return $this->hasOne("App\\Models\\OrderMark", 'oid', 'id');
     }
 
 }

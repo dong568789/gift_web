@@ -8,9 +8,9 @@ use Illuminate\Support\Arr;
 
 use App\Repositories\PayParamRepository;
 
-class PayParamController extends Controller
+class PayAliController extends Controller
 {
-    protected $keys = ['pay_type', 'param_status', 'value'];
+    protected $keys = ['mark', 'param_status', 'value'];
 
     protected $repo;
 
@@ -26,17 +26,19 @@ class PayParamController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		return $this->view('admin.payParam.list');
+		return $this->view('admin.payAli.list');
 	}
 
     public function data(Request $request)
     {
+        $request = $this->parseRequest($request);
         $data = $this->repo->data($request);
         return $this->api($data);
     }
 
     public function export(Request $request)
     {
+        $request = $this->parseRequest($request);
         $data = $this->repo->export($request);
         return $this->office($data);
     }
@@ -48,22 +50,23 @@ class PayParamController extends Controller
             return $this->failure_notexists();
 
         $this->_data = $payParam;
-        return !$request->offsetExists('of') ? $this->view('admin.payParam.show') : $this->api($payParam->toArray());
+        return !$request->offsetExists('of') ? $this->view('admin.payAli.show') : $this->api($payParam->toArray());
     }
 
     public function create()
     {
         $this->_data = [];
         $this->_validates = $this->censorScripts('payParam.store', $this->keys);
-        return $this->view('admin.payParam.create');
+        return $this->view('admin.payAli.create');
     }
 
     public function store(Request $request)
     {
         $data = $this->censor($request, 'payParam.store', $this->keys);
 
+        $data['pay_type'] =  catalog_search('fields.pay_type.ali', 'id');
         $payParam = $this->repo->store($data);
-        return $this->success('', url('admin/pay-param'));
+        return $this->success('', url('admin/pay-ali'));
     }
 
     public function edit($id)
@@ -74,7 +77,7 @@ class PayParamController extends Controller
 
         $this->_validates = $this->censorScripts('payParam.store', $this->keys);
         $this->_data = $payParam;
-        return $this->view('admin.payParam.edit');
+        return $this->view('admin.payAli.edit');
     }
 
     public function update(Request $request, $id)
@@ -97,4 +100,16 @@ class PayParamController extends Controller
         $this->repo->destroy($ids);
         return $this->success(null, true, ['id' => $ids]);
     }
+
+    public function parseRequest(Request $request)
+    {
+        $f = $request->input('f', []);
+
+        $append = ['pay_type' => catalog_search('fields.pay_type.ali', 'id')];
+
+        $request->offsetSet('f', array_merge($f, $append));
+        return $request;
+    }
+
 }
+

@@ -10,7 +10,7 @@ return [
 			'name' => '商品',
 			'rules' => 'numeric',
 		],
-		'contact' => [
+		'mark' => [
 			'name' => '联系方式',
 			'rules' => 'required',
 		],

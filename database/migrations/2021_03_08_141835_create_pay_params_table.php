@@ -15,6 +15,7 @@ class CreatePayParamsTable extends Migration
     {
         Schema::create('pay_params', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->string('mark')->comment="";
             $table->json('value')->comment="";
             $table->unsignedInteger('pay_type')->coment="";
             $table->unsignedInteger('param_status')->comment="";

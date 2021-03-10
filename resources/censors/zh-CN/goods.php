@@ -10,10 +10,6 @@ return [
             'name' => '积分',
             'rules' => 'numeric',
         ],
-        'alias' => [
-            'name' => '别名ID',
-            'rules' => 'required',
-        ],
         'price' => [
             'name' => '单价',
             'rules' => 'numeric',
@@ -26,24 +22,24 @@ return [
             'name' => '库存',
             'rules' => 'nullable|numeric',
         ],
-        'sales' => [
-            'name' => '销量',
+        'hot' => [
+            'name' => '热度',
             'rules' => 'nullable|numeric',
         ],
         'cover' => [
             'name' => '封面',
             'rules' => 'nullable|numeric',
         ],
+        'att_ids' => [
+            'name' => '轮播图',
+            'rules' => 'nullable|array',
+        ],
         'order' => [
             'name' => '排序',
             'rules' => 'nullable|numeric',
         ],
-        'description' => [
-            'name' => '描述',
-            'rules' => 'nullable',
-        ],
         'goods_status' => [
-            'name' => '锁定',
+            'name' => '状态',
             'rules' => 'numeric',
         ],
         'content' => [

@@ -56,6 +56,7 @@ class PayParamRepository extends Repository {
 
 		$total = $this->_getCount($request, $builder, false);
 		$data = $this->_getData($request, $builder, $callback, $columns);
+		$this->style($data['data']);
 		$data['recordsTotal'] = $total; //不带 f q 条件的总数
 		$data['recordsFiltered'] = $data['total']; //带 f q 条件的总数
 
@@ -73,4 +74,21 @@ class PayParamRepository extends Repository {
 		return $data;
 	}
 
+    public function style(&$params)
+    {
+        $enabled = catalog_search('status.param_status.enabled', 'id');
+        foreach ($params as &$param) {
+
+            $this->setStyle($param, $enabled);
+        }
+    }
+
+    public function setStyle(&$param, $status)
+    {
+        if ($param['param_status']['id'] == $status) {
+            $param['style'] = "label label-danger";
+        } else {
+            $param['style'] = "label label-default";
+        }
+    }
 }

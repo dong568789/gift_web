@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use Addons\Core\Contracts\Repository;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Order;
+use App\Models\Order;
+use Illuminate\Support\Arr;
 
 class OrderRepository extends Repository {
 
+
+    public function separateData($data)
+    {
+        $mark = Arr::pull($data, 'mark');
+
+        return compact('data', 'mark');
+    }
 	public function prePage()
 	{
 		return config('size.models.'.(new Order)->getTable(), config('size.common'));
@@ -18,20 +26,13 @@ class OrderRepository extends Repository {
 
 	public function find($id, array $columns = ['*'])
 	{
-		return Order::with(['accounts'])->find($id, $columns);
+		return Order::with([])->find($id, $columns);
 	}
 
     public function findByOrderId($order_id, array $columns = ['*'])
     {
         return Order::where('order_id', $order_id)->select($columns)->first();
     }
-
-    public function getByConcat($contact, array $columns = ['*'])
-    {
-        return Order::with(['accounts'])->where('order_id', $contact)->OrWhere('contact', $contact)->select($columns)
-            ->get();
-    }
-
 
 	public function findOrFail($id, array $columns = ['*'])
 	{
@@ -40,8 +41,11 @@ class OrderRepository extends Repository {
 
 	public function store(array $data)
 	{
-		return DB::transaction(function() use ($data) {
+	    $d = $this->separateData($data);
+	    extract('data', 'mark');
+		return DB::transaction(function() use ($data, $mark) {
 			$model = Order::create($data);
+			$model->mark()->create($mark);
 			return $model;
 		});
 	}
@@ -88,26 +92,5 @@ class OrderRepository extends Repository {
 	public function createOrderSn()
     {
         return date("YmdHis") . rand(1111, 9999);
-    }
-
-
-    public function sendAccount(Model $order)
-    {
-        $size = $order->goods->number;
-        $accountType = $order->goods->account_type->id;
-        $aRepo = new AccountRepository();
-
-        $accounts = $aRepo->getAccounts($accountType, $size);
-
-        foreach ($accounts as $account){
-            $account->update(['oid' => $order->id]);
-        }
-        $order->order_status = catalog_search('status.order_status.success', 'id');
-        if (!$accounts->isEmpty()) {
-            $order->send_account = catalog_search('status.send_account.success', 'id');
-        }
-        $order->save();
-
-        return $accounts;
     }
 }

@@ -1,64 +1,38 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="exampleModalLabel">账号</h4>
+    <h4 class="modal-title" id="exampleModalLabel">订单详细</h4>
 </div>
 <div class="modal-body">
     <table class="table table-striped" id="historyTable">
-        <thead>
-        <tr>
-            <th>账号</th>
-            <th>密码</th>
-        </tr>
-        </thead>
         <tbody>
-        <{if !empty($_data.accounts)}>
-        <{foreach $_data.accounts as $account}>
         <tr>
-            <td><{$account.username}></td>
-            <td><{$account.password}></td>
+            <td>订单号：</td>
+            <td><{$_data.order_id}></td>
+
+            <td>产品：</td>
+            <td><{$_data.goods_desc}></td>
         </tr>
-            <{/foreach}>
-        <{else}>
         <tr>
-            <td colspan="2">暂无数据</td>
+            <td>金额：</td>
+            <td><{$_data.price}></td>
+            <td>状态：</td>
+            <td><{$_data.order_status.title}></td>
         </tr>
-        <{/if}>
+        <tr>
+            <td>联系人：</td>
+            <td><{$_data.mark.realname}></td>
+            <td>联系电话：</td>
+            <td><{$_data.mark.tel}></td>
+        </tr>
+        <tr>
+            <td>地址：</td>
+            <td><{$_data.mark.address}></td>
+        </tr>
+        <tr>
+            <td>备注：</td>
+            <td><{$_data.mark.mark}></td>
+        </tr>
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="chatLogModal" tabindex="-2" role="dialog" aria-hidden="true" data-backdrop="false">
-    <div class="modal-dialog  modal-lg">
-        <div class="modal-content" style="height: 400px;overflow: scroll;margin: 50px;">
-
-        </div>
-    </div>
-</div>
-<script>
-
-    (function($){
-        function modal(id)
-        {
-            $('#chatLogModal').modal({
-                backdrop: false,
-                show:false,
-                remote: "<{url('admin/chat/chat')}>/" + id
-            });
-        }
-
-        $(document).on('shown.bs.modal', '#chatLogModal', function(){
-            $('.modal-backdrop').eq(1).remove();
-        });
-
-        $(document).on('hidden.bs.modal', '#chatLogModal', function(){
-            $(this).removeData("bs.modal");
-            $(this).find('.modal-content').children().remove();
-        });
-
-        $(document).on('click', '#closeLog', function(){
-            $('#chatLogModal').removeData("bs.modal");
-            $('#chatLogModal').find('.modal-content').children().remove();
-            $('#chatLogModal').hide();
-        });
-    })(jQuery);
-</script>

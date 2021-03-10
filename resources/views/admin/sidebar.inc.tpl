@@ -43,11 +43,10 @@
 				</li>
 				<li>
 					<a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i
-								class="fa fa-address-card sidebar-nav-icon"></i>账号管理</a>
+								class="fa fa-address-card sidebar-nav-icon"></i>支付参数</a>
 					<ul>
-						<li><a href="<{'admin/account'|url}>" name="account/list">账号列表</a></li>
-						<li><a href="<{'admin/account/create'|url}>" name="account/create"><i class="gi gi-plus"></i>
-								添加产品</a></li>
+						<li><a href="<{'admin/pay-ali'|url}>" name="pay-ali/list">支付宝</a></li>
+						<li><a href="<{'admin/pay-wx'|url}>" name="pay-wx/list">微信</a></li>
 					</ul>
 				</li>
 				<li>

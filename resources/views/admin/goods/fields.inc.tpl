@@ -7,16 +7,24 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="alias">别名ID</label>
+			<label class="col-md-3 control-label" for="price">现价</label>
 			<div class="col-md-9">
-				<input type="text" id="alias" name="alias" class="form-control" placeholder="请输入别名ID" value="<{$_data.alias}>">
+				<input type="price" id="price" name="price" class="form-control" placeholder="请输入单价"
+					   value="<{$_data.price}>">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="number">每套数量</label>
+			<label class="col-md-3 control-label" for="price">原价</label>
 			<div class="col-md-9">
-				<input type="number" id="number" name="number" class="form-control" placeholder="请输入数量"
-					   value="<{$_data.number}>">
+				<input type="price" id="price" name="price" class="form-control" placeholder="请输入单价"
+					   value="<{$_data.price}>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="integral">积分</label>
+			<div class="col-md-9">
+				<input type="price" id="integral" name="integral" class="form-control" placeholder="请输入积分"
+					   value="<{$_data.integral}>">
 			</div>
 		</div>
 		<div class="form-group">
@@ -27,17 +35,10 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="sales">销量</label>
+			<label class="col-md-3 control-label" for="hot">热度</label>
 			<div class="col-md-9">
-				<input type="sales" id="sales" name="sales" class="form-control" placeholder="请输入销量"
-					   value="<{$_data.sales}>">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label" for="price">单价</label>
-			<div class="col-md-9">
-				<input type="price" id="price" name="price" class="form-control" placeholder="请输入单价"
-					   value="<{$_data.price}>">
+				<input type="sales" id="hot" name="hot" class="form-control" placeholder="请输入热度"
+					   value="<{$_data.hot}>">
 			</div>
 		</div>
 		<div class="form-group">
@@ -48,48 +49,34 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="goods_category">分类</label>
-			<div class="col-md-9">
-				<select name="goods_category" id="goods_category" class="form-control">
-					<{foreach catalog_search('fields.goods_category', 'children') as $item}>
-				<option value="<{$item.id}>" <{if !empty($_data.goods_category) && $_data.goods_category.id == $item.id}>selected<{/if}>><{$item.title}></option>
-					<{/foreach}>
-				</select>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label" for="account_type">账号类型</label>
-			<div class="col-md-9">
-				<select name="account_type" id="account_type" class="form-control">
-					<{foreach catalog_search('fields.account_type', 'children') as $item}>
-				<option value="<{$item.id}>" <{if !empty($_data.account_type) && $_data.account_type.id == $item.id}>selected<{/if}>><{$item.title}></option>
-					<{/foreach}>
-				</select>
-			</div>
-		</div><div class="form-group">
 			<label class="col-md-3 control-label" for="goods_status">状态</label>
 			<div class="col-md-9">
-				<select name="goods_status" id="goods_status" class="form-control">
-					<{foreach catalog_search('status.goods_status', 'children') as $item}>
-				<option value="<{$item.id}>" <{if !empty($_data.goods_status) && $_data.goods_status.id == $item.id}>selected<{/if}>><{$item.title}></option>
+				<{foreach catalog_search('status.goods_status', 'children') as $v}>
+				<label class="radio-inline">
+					<input type="radio" name="goods_status" value="<{$v.id}>" <{if !empty($_data.goods_status) && $_data.goods_status.id == $v.id}>checked="checked"<{/if}> > <{$v.title}>
+				</label>
+				<{/foreach}>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="cover">封面</label>
+			<div class="col-md-9">
+				<input type="hidden" id="cover" name="cover" class="form-control" value="<{$_data.cover|default:0}>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="att_ids">轮播图</label>
+			<div class="col-md-9">
+				<select multiple="multiple" class="hidden" id="att_ids" name="att_ids[]">
+					<{foreach $_data.att_ids as $id}>
+					<option value="<{$id}>" selected="selected"><{$id}></option>
 					<{/foreach}>
 				</select>
+				<div class="help-block">最多可以上传20张，继续点击按钮表示添加图片，删除图片，请点击 <span class="fa fa-times"></span> 或 <span
+							class="fa fa-trash"></span></div>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label" for="cover_id">封面</label>
-			<div class="col-md-9">
-				<input type="hidden" id="cover_id" name="cover_id" class="form-control" value="<{$_data.cover_id|default:0}>">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="col-md-3 control-label" for="description">描述</label>
-			<div class="col-md-9">
-				<textarea name="description" id="description" class="form-control"><{$_data.description}></textarea>
-			</div>
-		</div>
-
 		<div class="form-group">
 			<label class="col-md-3 control-label" for="content">内容</label>
 			<div class="col-md-9">

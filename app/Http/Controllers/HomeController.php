@@ -29,7 +29,7 @@ class HomeController extends CoreController
         $request->offsetSet('o', [
             'order' => 'desc'
         ]);
-        $request->offsetSet('size', 50);
+        $request->offsetSet('size', 100);
 
         $data = $this->repo->data($request);
 

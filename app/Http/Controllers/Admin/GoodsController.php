@@ -10,8 +10,8 @@ use App\Repositories\GoodsRepository;
 
 class GoodsController extends Controller
 {
-    protected $keys = ['title', 'alias', 'integral', 'inventory', 'original_price', 'price', 'cover',
-        'att_ids', 'order', 'description', 'goods_status', 'content', 'attr'];
+    protected $keys = ['title', 'integral', 'inventory', 'original_price', 'price', 'cover',
+        'att_ids', 'order', 'hot', 'goods_status', 'content'];
 
     protected $repo;
 

@@ -1,36 +1,20 @@
 <{extends file="extends/main.block.tpl"}>
+<{block "head-styles-plus"}>
+    <script type="text/javascript">
+        window.onload = function () {
+            (function () {
+                var docElem = document.documentElement;
+                docElem.style.fontSize = docElem.getBoundingClientRect().width / 16 + "px";
+            })()
+        };
+    </script>
+<link rel="stylesheet" href="<{'web/css/index.css'|static}>">
+<link rel="stylesheet" href="<{'web/css/iswiper.min.css'|static}>">
+    <style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style><link rel="stylesheet" href="https://dalieba.cn/static/layer/theme/default/layer.css?v=3.1.1" id="layuicss-layer"></head>
+
+    <{/block}>
 <{block "body-container"}>
-<{include file="common/head.inc.tpl"}>
-    <html lang="zh" style="font-size: 22.5px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-        <title>优品商城</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
-        <script src="https://hm.baidu.com/hm.js?bf8a36bb95054cd6d1d87e650548565e"></script><script>
-            var _hmt = _hmt || [];
-            (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?bf8a36bb95054cd6d1d87e650548565e";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-        <script type="text/javascript">
-            window.onload = function () {
-                (function () {
-                    var docElem = document.documentElement;
-                    docElem.style.fontSize = docElem.getBoundingClientRect().width / 16 + "px";
-                })()
-            };
-        </script>
-        <link rel="stylesheet" type="text/css" href="/static/home/img/style.css">
-        <link rel="stylesheet" type="text/css" href="/static/home/img/index.css">
-        <link rel="stylesheet" type="text/css" href="/static/home/img/swiper.min.css">
-        <style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style><link rel="stylesheet" href="https://dalieba.cn/static/layer/theme/default/layer.css?v=3.1.1" id="layuicss-layer"></head>
-
-    <body style="margin:0px auto; max-width:540px;">
-
-
+    <{include file="common/head.inc.tpl"}>
     <style>
         .I_box {
             width: 97%;
@@ -40,13 +24,13 @@
         body {
             background: #f9f9f9;
         }
-        a:link{text-decoration:none;
-    .ser-top img {
-        margin-top: 5px;
-        width: 20px;
-        float: right;
-        margin-right: 5px;
-    }
+        a:link{text-decoration:none;}
+        .ser-top img {
+            margin-top: 5px;
+            width: 20px;
+            float: right;
+            margin-right: 5px;
+        }
 
         .I_but_ul2 p {
             padding: 6% 2%;
@@ -144,7 +128,7 @@
         }
 
     </style>
-    <link rel="stylesheet" type="text/css" href="/static/home/img/service.css">
+<link rel="stylesheet" href="<{'web/css/service.css'|static}>">
     <style>
         .ser-top {
             position: fixed;
@@ -1017,51 +1001,48 @@
     </style>
     <div class="top_tab1" id="topbar">
         <ul class="tab_ul">
-            <img class="tuImg" src="/static/home/img/jf.png">
-            <li class="tu1 shouye" _rp="true" _rp_action="我的积分" _rp_category="年货节" _rp_label="艾淳空气净化器" _rp_value="199">
+            <img class="tuImg" src="<{'web/images/jf.png'|static}>">
+            <li class="tu1 shouye" _rp="true" _rp_action="我的积分" _rp_category="年货节" _rp_label="<{$_goods.title}>"
+                _rp_value="<{$_goods.id}>">
                 <p class="tup1">我的积分</p>
-                <p class="tup2" style="font-size: 16px;"><span class="jifenzhi">5881</span></p>
+                <p class="tup2" style="font-size: 16px;"><span class="jifenzhi"><{$_myInventory}></span></p>
             </li>
         </ul>
         <p class="hen"></p>
         <ul class="tab_ul">
-            <img class="tuImg" src="/static/home/img/home.png">
-            <li class="tu1 shouye" _rp="true" _rp_action="积分首页" _rp_category="年货节" _rp_label="艾淳空气净化器" _rp_value="199">
-                <p class="tup1 " style="margin-top: 1px;"><a href="/index/invest/index.html">积分首页</a></p>
+            <img class="tuImg" src="<{'web/images/home.png'|static}>">
+            <li class="tu1 shouye" _rp="true" _rp_action="积分首页" _rp_category="年货节" _rp_label="<{$_goods.title}>"
+                _rp_value="<{$_goods.id}>">
+                <p class="tup1 " style="margin-top: 1px;"><a href="<{url('integral')}>.html">积分首页</a></p>
             </li>
         </ul>
         <div class="top_box">
             <div class="top1">
-                <img class="t_Img" src="/static/home/img/laba.png">
+                <img class="t_Img" src="<{'web/images/laba.png'|static}>">
                 <div class="t_txt">您的积分将在
                     <script type="text/javascript">
                         var date = new Date();
                         date.setDate(date.getDate()+15);
                         document.write(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
-                    </script>2021年3月25日过期 请尽快使用
+                    </script>过期 请尽快使用
                 </div>
             </div>
         </div>
     </div>
     <div class="top">
         <!-- Swiper -->
-        <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-android" id="swiperc01" style="background:#000; color:#FFF;position:relative;">
+        <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-android" id="swiperc01">
             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-
-                <div class="swiper-slide swiper-slide-active" style="width: 360px;">
-                    <img class="I_img" src="/uploads/images/20210310/4cdcb114c0676b0ff89872d307206eba.jpg" style="width: 100%;height: 375px;">
+                <{foreach $_goods.attachment_urls as $url}>
+                <div class="swiper-slide swiper-slide-active">
+                    <img class="I_img" src="<{$url}>">
                 </div>
-                <div class="swiper-slide swiper-slide-next" style="width: 360px;">
-                    <img class="I_img" src="/uploads/images/20210310/c0d52d45cb5e197fcfbc75a302c2a4ea.jpg" style="width: 100%;height: 375px;">
-                </div>
-                <div class="swiper-slide" style="width: 360px;">
-                    <img class="I_img" src="/uploads/images/20210310/657311c89379da0bc73e31cad61bd11a.jpg" style="width: 100%;height: 375px;">
-                </div>
+                <{/foreach}>
 
             </div>
 
             <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-bullets" id="swiperp01"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+            <div class="swiper-pagination swiper-pagination-bullets" id="swiperp01"></div>
 
             <div class="swiper_gm">
                 <div class="swiper-container swiper-container21 swiper-container-vertical swiper-container-android swiper-container-initialized">
@@ -1946,13 +1927,13 @@
 
             <div class="prive fl clearfix">
                 <div class="money fl">
-                    <span style="font-size: 28px;"><span id="goodPoints">2999</span>积分</span>
+                    <span style="font-size: 28px;"><span id="goodPoints"><{$_goods.inventory}></span>积分</span>
                     <input type="hidden" id="shop_id" value="210">
                 </div>
                 <div class="old-money fl">
-                    <del class="jifensheng1">2399</del>
+                    <del class="jifensheng1"><{$_goods.original_price}></del>
                     <div>
-                        <div style="font-size: 16px;margin-top: -2px;">+<span class="jifensheng2">1999</span>元<p class="pa" style="    float: right;margin-top:2px;">兑换价</p></div>
+                        <div style="font-size: 16px;margin-top: -2px;">+<span class="jifensheng2"><{$_goods.price}></span>元<p class="pa" style="    float: right;margin-top:2px;">兑换价</p></div>
 
                     </div>
                 </div>
@@ -1962,34 +1943,34 @@
                     积分已省
                 </p>
                 <p class="count-tit">
-                    <del class="jifensheng3">￥400</del>
+                    <del class="jifensheng3">￥<{$_goods.save}></del>
                 </p>
 
             </div>
 
         </div>
         <div class="shop-tit">
-            <h3 style="font-size: 18px;" id="title"><img style="height: 20px;position: relative;top: 5px;margin-right: 10px;" src="/static/home/img/ysqg03.png">
-                <span>P30 8GB+128GB</span>
+            <h3 style="font-size: 18px;" id="title"><img style="height: 20px;position: relative;top: 5px;margin-right: 10px;" src="<{'web/images/ysqg03.png'|static}>">
+                <span><{$_goods.attr}></span>
             </h3>
 
             <div>
                 <span style="color: #999999;font: 14px/1.5 tahoma, \5b8b\4f53, sans-serif;">全场包邮</span>
                 <div class="_1YFM01i7" style="color: black;display: inline;">
-                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1a">01</p>
+                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1a"></p>
                     <p class="time_t2" style="color: black;display:inline;padding-left: 0">:</p>
-                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1b">56</p>
+                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1b"></p>
                     <p class="time_t2" style="color: black;display:inline;padding-left: 0">:</p>
-                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1c">07</p>
-                    <p class="tip" style="color: black;display:inline;padding-left: 0">恢复¥2399起</p>
+                    <p class="time_t1" style="color: black;display:inline;padding-left: 0" id="time_t1c"></p>
+                    <p class="tip" style="color: black;display:inline;padding-left: 0">恢复¥<{$_goods.original_price}>起</p>
                 </div>
-                <span style="float: right;color: #999999;font: 14px/1.5 tahoma, \5b8b\4f53, sans-serif;">热度5677万+</span>
+                <span style="float: right;color: #999999;font: 14px/1.5 tahoma, \5b8b\4f53, sans-serif;">热度<{$_goods.hot}>万+</span>
                 <p style="border-bottom: 1px solid #e5e5e5;"></p>
             </div>
 
             <div class="I_txt2" style="margin: 0px;height: 25px;">
                 <div class="I_txt_p" style="line-height: 10px;">
-                    <p class="I_txt_p1" style="color: #000;font-size: 16px;"><img style="height: 14px;position: relative;top: 2px;" src="/static/home/img/xnz01.png"></p>
+                    <p class="I_txt_p1" style="color: #000;font-size: 16px;"><img style="height: 14px;position: relative;top: 2px;" src="<{'web/images/xnz01.png'|static}>"></p>
                     <p class="I_txt_p2" style="font-size: 12px;">限时兑换</p>
                     <p class="I_txt_p3" style="font-size: 14px;color: black;">限时限量·过期作废</p>
                 </div>
@@ -2005,12 +1986,12 @@
         <div>
             <span style="color: #999999;">库存</span>
             <span>还剩:</span>
-            <span style="color: #f61d4b;">38件</span>
-            <img style="height: 20px;position: relative;top: 5px;margin-right: 10px;" src="/static/home/img/kcgj01.png">
+            <span style="color: #f61d4b;"><{$_goods.inventory}>件</span>
+            <img style="height: 20px;position: relative;top: 5px;margin-right: 10px;" src="<{'web/images/kcgj01.png'|static}>">
         </div>
         <div id="fuwucl" style="padding-top:15px;">
             <div style="color:black;">服务 <span style="color: #f61d4b;">·差必赔·七天退换·全场包邮</span>
-                <img style="width: 15px;vertical-align: middle;margin-left: 2px;margin-bottom: 3px;" src="/static/home/img/right.png">
+                <img style="width: 15px;vertical-align: middle;margin-left: 2px;margin-bottom: 3px;" src="<{'web/images/right.png'|static}>">
             </div>
             <!--        <ul>-->
             <!--            <li style="color: #f61d4b;">差必赔.</li>-->
@@ -2025,45 +2006,34 @@
         <!--                style="color: #999999; padding: 0px 5px;">|</span>7天无理由退换</span>-->
         <!--    </div>-->
     </div>
-    <!--<div style="height:10px;background:#efefef;"></div>-->
+<!--<div style="height:10px;background:#efefef;"></div>-->
     <div style="height:10px;background:#efefef;"></div>
     <div class="content" style="font-size:0;">
 
-        <div class="I_title" id="dingdanxinxi1" style="display:inline-block;vertical-align: middle;width:50%;" _rp="true" _rp_action="商品信息" _rp_category="年货节" _rp_label="艾淳空气净化器" _rp_value="199">
+        <div class="I_title" id="dingdanxinxi1" style="display:inline-block;vertical-align: middle;width:50%;"
+             _rp="true" _rp_action="商品信息" _rp_category="年货节" _rp_label="<{$_goods.title}>" _rp_value="<{$_goods.id}>">
             <h1 class="I_t_h1">商品信息</h1>
             <p class="I_t_hena I_t_henbg"></p>
         </div>
-        <div class="I_title" id="dingdanxinxi" style="display:inline-block;vertical-align: middle;width:50%;" _rp="true" _rp_action="填写订单" _rp_category="年货节" _rp_label="艾淳空气净化器" _rp_value="199">
+        <div class="I_title" id="dingdanxinxi" style="display:inline-block;vertical-align: middle;width:50%;"
+             _rp="true" _rp_action="填写订单" _rp_category="年货节" _rp_label="<{$_goods.title}>" _rp_value="<{$_goods.id}>">
             <h1 class="I_t_h1">填写订单</h1>
             <p class="I_t_hena"></p>
         </div>
 
         <div class="I_box" style="display: none">
 
-            <form class="editForm" id="order-form" name="editForm" action="https://jingdongyouxuan.com/mallSix/api/saveOrder" method="post">
-                <input type="hidden" id="goodGroupType" name="goodGroupType" value="2">
-                <input type="hidden" id="goodsId" name="goodsId" value="831827809927168">
-                <input type="hidden" id="projectId" name="projectId" value="832679355875328">
-                <input type="hidden" id="token" name="token" value="MZ666RC1-D4TCQ43QWWUI0Q48ODIX1-MMJXXX5K-0">
-                <!--                <input type="hidden" name="province_str" id="province_str" value="">-->
-                <!--                <input type="hidden" name="city_str" id="city_str" value="">-->
-                <!--                <input type="hidden" name="district_str" id="district_str" value="">-->
-                <!--                <input type="hidden" name="payment" id="payment" value="微信支付">-->
-                <!--                <input type="hidden" name="paymenttype" id="paymenttype" value="1">-->
-                <!--                <input type="hidden" name="price" id="price" value="98">-->
-                <!--                <input type="hidden" name="color" id="color" value="雷克斯商务腕表R0907">-->
-
-                <!--                <input type="hidden" name="orderid" id="orderid" value="0">-->
-                <!--                <input type="hidden" name="payOrder" id="payOrder" value="0">-->
-
-                <!--                <input type="hidden" name="payradio" id="payradio" value="1">-->
-                <!--                <input type="hidden" name="isvip" id="isvip" value="0">-->
+            <form class="editForm" id="order-form" name="editForm" action="<{url('order/store')}>" method="post">
+                <input type="hidden" id="goodsId" name="gid" value="<{$_goods.id}>">
+                <{csrf_field() nofilter}>
                 <ul class="I_form" style="margin-top: 20px;">
                     <li>
-                        <label class="bdxx"><em>*</em>收货姓名</label><input type="text" name="receiverName" id="receiverName" value="" placeholder="请输入姓名" required="">
+                        <label class="bdxx"><em>*</em>收货姓名</label><input type="text" name="realname" id="receiverName"
+                                                                         value="" placeholder="请输入姓名" required="">
                     </li>
                     <li class="Phone">
-                        <label class="bdxx"><em>*</em>手机号码</label><input type="number" name="phone" id="phone" value="" placeholder="请输入手机号" required="">
+                        <label class="bdxx"><em>*</em>手机号码</label><input type="number" name="mobile" id="phone"
+                                                                         value="" placeholder="请输入手机号" required="">
                     </li>
                     <!-- <li class="Phone">
                         <label class="bdxx"><em>*</em>手机验证码</label><input style="width:60%;float:left" type="number" name="phonecode" id="phonecode" value="" placeholder="请输入手机验证码" required="">
@@ -2085,63 +2055,39 @@
 
 
                     <li>
-                        <label class="bdxx"><em>*</em>详细地址</label><input type="text" name="addressDetail" id="addressDetail" value="" placeholder="请输入详细地址" required="">
+                        <label class="bdxx"><em>*</em>详细地址</label><input type="text" name="address" id="addressDetail"
+                                                                         value="" placeholder="请输入详细地址" required="">
                     </li>
                     <div id="paytypemain" data-id="">
-                        <li class="zuli" data-id="1">
+                        <li class="zuli" data-id="<{search_catalog('fileds.pay_type.wx', 'id')}>">
                             <div class="zlipd1">
-                                <img class="zliImg ds" src="/uploads/images/20210309/d6a49c43bed2701f8de8358fd8a8913c.jpg" alt="">
+                                <img class="zliImg ds" src="<{'web/images/d6a49c43bed2701f8de8358fd8a8913c.jpg'|static}>" alt="">
                                 <p class="zlip1 ds">微信支付</p>
                             </div>
                             <div class="zlipd2">
                                 <p class="zlip3 ds">推荐</p>
-                                <img class="zrad ds" src="/static/home/img/radio.png">
+                                <img class="zrad ds" src="<{'web/images/radio.png'|static}>">
                             </div>
                             <div style="clear: both;"></div>
                         </li>
-                        <!--<li class="zuli" id="paytypehd"  data-id="2">
-            <div class="zlipd1">
-                <img class="zliImg ds" src="/static/home/img/qianbao.png" alt="">
-                <p class="zlip1 ds">货到付款</p>
-            </div>
-            <div class="zlipd2">
-                <img class="zrad ds" src="/static/home/img/radio1.png">
-            </div>
-            <div class="zlipdbottomh" style="width:100%">无线上支付·货到后在付款</div>
-            <div style="clear: both;"></div>
-        </li>-->
                     </div>
-
-
-                    <!--                    <li>-->
-                    <!--                        <label class="bdxx">备注</label><input type="text" name="remark" id="remark" value=""-->
-                    <!--                                                             placeholder="请输入需求" required=""-->
-                    <!--                                                             style="-webkit-border-radius: 35px;">-->
-                    <!--                    </li>-->
-                    <!--
-                    <li  style="    height: 35px;">
-                        <label class="bdxx">数量</label>
-                        <div>
-                            <a href="javascript:" class="btn btn_minus" role="button" title="增加" style="float: left;"></a>
-                            <input class="inputNum" id="num" name="num" value="1" size="1" style="float: left;width: 30px;height: 22px;padding: 1px;border-radius: 0px;margin:0px 5px;">
-                            <a href="javascript:" class="btn btn_plus" role="button" title="减少"></a>
-                        </div>
-                    </li>
-                    -->
                     <li id="youhuijuan01" style="display: none;">
-                        <img class="I_li_img1" src="/static/home/img/radio.png">
+                        <img class="I_li_img1" src="<{'web/images/radio.png'|static}>">
                         <p class="I_li_p">使用优惠券</p>
-                        <img class="I_li_img2" src="/static/home/img/coupon.png">
+                        <img class="I_li_img2" src="<{'web/images/coupon.png'|static}>">
                         <p class="I_li_p1">已减20元</p>
                     </li>
                     <li id="youhuijuan02" style="padding-top: 20px;">
                         <div class="I_li_p2">您提交的信息将加密发送</div>
-                        <div class="I_li_p3">应付:<b style="    font-size: 17px;">2999积分</b>&nbsp;<b style="font-size: 12px;">+￥1999</b></div>
+                        <div class="I_li_p3">应付:<b style="    font-size: 17px;"><{$_goods.integral}>积分</b>&nbsp;<b
+                                    style="font-size:
+                        12px;">+￥<{$_goods.price}></b></div>
                     </li>
 
                     <li style="margin-top: 30px;margin-bottom: 35px;">
                         <button class="I_form_but" id="subt" type="button">立即兑换</button>
-                        <p class="fuwushang">本次兑换商品由品牌商提供，如有问题联系<a class="telhone" _rp="true" _rp_action="官方客服" href="/index/order/kefu.html">官方客服</a>
+                        <p class="fuwushang">本次兑换商品由品牌商提供，如有问题联系<a class="telhone" _rp="true" _rp_action="官方客服"
+                                                                   href="<{url('chat')}>.html">官方客服</a>
                         </p>
                         <div style="margin-top:55px;line-height:15px;height:15px; font-size:8px;text-align:center;">@本次活动所有解释权归优品商城所有</div>
                     </li>
@@ -2157,11 +2103,11 @@
         <div class="I_but" style="display: block;">
             <ul class="H_but_box">
                 <li class="H_but_ul1 falme" style="width:18%;">
-                    <img src="/static/home/img/shop3.png">
+                    <img src="<{'web/images/shop3.png'|static}>">
                     <p>首页</p>
                 </li>
                 <li class="H_but_ul1 kefu" style="width:18%;">
-                    <img src="/static/home/img/kefu.png">
+                    <img src="<{'web/images/kefu.png'|static}>">
                     <p>客服</p>
                 </li>
                 <li class="H_but_ul3 xiadan" style="width: 64%; background: rgb(224, 0, 0);">
@@ -2388,46 +2334,46 @@
         <div style="width: 100%;height: 5px;background-color: #f9f9f9;"></div>
 
         <div id="zz" class="zz" style="display: none;">
-            <img id="coupon" class="pon" src="/static/home/img/coupon2.png">
+            <img id="coupon" class="pon" src="<{'web/images/coupon2.png'|static}>">
         </div>
         <div id="z1" class="zz" style="display: none;">
             <div class="zbox">
                 <div class="chazz" style="float: right;margin-top: -20px;margin-right:4px;">
-                    <img style="width: 30px;" src="/static/home/img/cha_icon1.png">
+                    <img style="width: 30px;" src="<{'web/images/cha_icon1.png'|static}>">
                 </div>
                 <p class="zp">支付方式</p>
                 <ul class="zul">
                     <li class="zuli" id="person1">
                         <div class="zlipd1">
-                            <img class="zliImg ds" src="/static/home/img/weixin.png" alt="">
+                            <img class="zliImg ds" src="<{'web/images/weixin.png'|static}>" alt="">
                             <p class="zlip1 ds">微信支付</p>
                         </div>
                         <div class="zlipd2">
                             <p class="zlip3 ds">推荐</p>
-                            <img class="zrad ds" src="/static/home/img/radio.png">
+                            <img class="zrad ds" src="<{'web/images/radio.png'|static}>">
                         </div>
                         <div class="zlipdbottom">使用微信支付·方便快捷</div>
                         <div style="clear: both;"></div>
                     </li>
                     <li class="zuli" id="person2">
                         <div class="zlipd1">
-                            <img class="zliImg ds" src="/static/home/img/zhifubao.png" alt="">
+                            <img class="zliImg ds" src="<{'web/images/zhifubao.png'|static}>" alt="">
                             <p class="zlip1 ds">支付宝支付</p>
                         </div>
                         <div class="zlipd2">
                             <p class="zlip3 ds">推荐</p>
-                            <img class="zrad ds" src="/static/home/img/radio1.png">
+                            <img class="zrad ds" src="<{'web/images/radio1.png'|static}>">
                         </div>
                         <div class="zlipdbottom">使用支付宝支付<span>(支持花呗)</span></div>
                         <div style="clear: both;"></div>
                     </li>
                     <li class="zuli" id="person3">
                         <div class="zlipd1">
-                            <img class="zliImg ds" src="/static/home/img/qianbao.png" alt="">
+                            <img class="zliImg ds" src="<{'web/images/qianbao.png'|static}>" alt="">
                             <p class="zlip1 ds">货到付款</p>
                         </div>
                         <div class="zlipd2">
-                            <img class="zrad ds" src="/static/home/img/radio1.png">
+                            <img class="zrad ds" src="<{'web/images/radio1.png'|static}>">
                         </div>
                         <div class="zlipdbottomh">无线上支付·货到后在付款</div>
                         <div style="clear: both;"></div>
@@ -2440,68 +2386,66 @@
         </div>
     </div>
 
-    <a href="/index/order/index.html"><img src="/static/home/img/dingdan02.png" _rp="true" _rp_action="订单查询" style="position:fixed;bottom:120px;right:0px;width:60px;" _rp_category="年货节" _rp_label="艾淳空气净化器" _rp_value="199"></a>
+    <a href="<{url('search')}>.html"><img src="<{'web/images/dingdan02.png'|static}>" _rp="true" _rp_action="订单查询"
+                                           style="position:fixed;bottom:120px;right:0px;width:60px;" _rp_category="年货节" _rp_label="<{$_goods.title}>" _rp_value="<{$_goods.id}>"></a>
 
-
-
-    <script src="/static/home/img/jquery.min.js"></script>
     <script type="text/javascript" src="/static/layer/layer.js"></script>
     <script type="text/javascript">
     </script>
 
-    <script type="text/javascript" src="/static/home/img/swiper.min.js"></script>
-    <script src="/static/home/img/area.js"></script>
-    <script type="text/javascript" src="/static/home/img/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="<{'web/images/'|static}>swiper.min.js"></script>
+    <script src="<{'web/images/'|static}>area.js"></script>
+    <script type="text/javascript" src="<{'web/images/'|static}>jquery.lazyload.min.js"></script>
 
 
     <script>
         $("#paytypemain li").click(function(){
-            $(this).find('.zlipd2 img').attr('src','/static/home/img/radio.png').parent().parent().siblings().find('.zlipd2 img').attr('src','/static/home/img/radio1.png');
+            $(this).find('.zlipd2 img').attr('src','<{'web/images/radio.png'|static}>').parent().parent().siblings().find('.zlipd2 img').attr('src','<{'web/images/radio1.png'|static}>');
             $("#paytypemain").attr('data-id',$(this).attr('data-id'));
         })
-        var sendstatus = true;
-        $('#get_phone_code').click(function() {
-            var phone = $('input[name="phone"]').val();
-            if(phone == ''){
-                layer.msg("手机号不能为空");
-                return false;
-            }
-            if(sendstatus == false){
-                return false;
-            }
-            sendstatus = false;
-            $('#get_phone_code').attr({
-                "disabled": "disabled"
-            }).css('background', '#776e6d');
-
-            $.post("/index/user/sendcode.html", {
-                        "phone": phone,
-                    },
-                    function(d) {
-                        if (d.status == 1) {
-                            layer.msg('发送成功');
-
-                            var leftTime = 60;
-                            var timer = setInterval(function() { //倒计时
-                                        $('#get_phone_code').text(leftTime + '秒');
-                                        leftTime--;
-                                        if (leftTime == 0) { //重新发送
-                                            clearInterval(timer);
-                                            sendstatus = true;
-                                            $('#get_phone_code').removeAttr('disabled').text('重新获取').css('background', '#ec3e2e');
-                                        }
-                                    },
-                                    1000);
-                        } else {
-                            sendstatus = true;
-                            $('#get_phone_code').removeAttr('disabled').text('重新获取').css('background', '#ec3e2e');
-                            layer.msg(d.message);
-                        }
-
-                    },
-                    'json');
-
-        })
+        //var sendstatus = true;
+        // $('#get_phone_code').click(function() {
+        //     var phone = $('input[name="phone"]').val();
+        //     if(phone == ''){
+        //         layer.msg("手机号不能为空");
+        //         return false;
+        //     }
+        //     if(sendstatus == false){
+        //         return false;
+        //     }
+        //     sendstatus = false;
+        //     $('#get_phone_code').attr({
+        //         "disabled": "disabled"
+        //     }).css('background', '#776e6d');
+        //
+        //     $.post("/index/user/sendcode.html", {
+        //             "phone": phone,
+        //         },
+        //         function(d) {
+        //             if (d.status == 1) {
+        //                 layer.msg('发送成功');
+        //
+        //                 var leftTime = 60;
+        //                 var timer = setInterval(function() { //倒计时
+        //                         $('#get_phone_code').text(leftTime + '秒');
+        //                         leftTime--;
+        //                         if (leftTime == 0) { //重新发送
+        //                             clearInterval(timer);
+        //                             sendstatus = true;
+        //                             $('#get_phone_code').removeAttr('disabled').text('重新获取').css('background', '#ec3e2e');
+        //                         }
+        //                     },
+        //                     1000);
+        //             } else {
+        //                 sendstatus = true;
+        //                 $('#get_phone_code').removeAttr('disabled').text('重新获取').css('background', '#ec3e2e');
+        //                 layer.msg(d.message);
+        //             }
+        //
+        //         },
+        //         'json');
+        //
+        // })
         $(window).scroll(function () {
             var scrollTop = $(this).scrollTop();
             var scrollHeight = $(document).height();
@@ -2816,8 +2760,8 @@
                 alert('详细地址过长,请重新输入');
                 return false;
             }
-            var jifen = 7000;
-            var goodPoints=999;
+            var jifen = '<{$_myIntegral}>';
+            var goodPoints= '<{$_goods.integral}>';
             if (jifen < goodPoints){
                 $('#posttongji').attr("_rp_value",tel);
                 $('#posttongji').click();
@@ -2930,7 +2874,7 @@
 
                         $.ajax({
                             type:"POST",
-                            url:"/index/invest/subpost.html",
+                            url:"<{url('order/store')}>",
                             dataType:"json",
                             contentType:"application/json",
                             data:JSON.stringify(data),

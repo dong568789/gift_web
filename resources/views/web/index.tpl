@@ -173,35 +173,35 @@
             <!-- 选择按钮 -->
             <div class="jtab">
                 <ul class="jtabUl">
-                    <a href="/index/index/index.html">
+                    <a href="<{url('/')}>">
                         <li class="jtabLi falme" _rp="true" _rp_category="中部导航" _rp_action="商品首页">
                             <img src="<{'web/images/index.png'|static}>">
 
                             <p>商品首页</p>
                         </li>
                     </a>
-                    <a href="/index/invest/index.html">
+                    <a href="<{url('integral')}>.html">
                         <li class="jtabLi inter" _rp="true" _rp_category="中部导航" _rp_action="积分兑换">
                             <img src="<{'web/images/dh.png'|static}>">
 
                             <p>积分兑换</p>
                         </li>
                     </a>
-                    <a href="http://dalieba.cn/chat.html">
+                    <a href="<{url('chat')}>.html">
                         <li class="jtabLi kefu" _rp="true" _rp_category="中部导航" _rp_action="联系客服">
                             <img src="<{'web/images/kf.png'|static}>">
 
                             <p>联系客服</p>
                         </li>
                     </a>
-                    <a href="/index/invest/index.html">
+                    <a href="<{url('integral')}>.html">
                         <li class="jtabLi youhui">
                             <img src="<{'web/images/lw.png'|static}>" _rp="true" _rp_category="中部导航" _rp_action="更多优惠">
 
                             <p>更多优惠</p>
                         </li>
                     </a>
-                    <a href="/index/order/index.html">
+                    <a href="<{url('search')}>.html">
                         <li class="jtabLi myorder" _rp="true" _rp_category="中部导航" _rp_action="订单查询">
                             <img src="<{'web/images/order.png'|static}>">
 
@@ -210,7 +210,7 @@
                     </a>
                 </ul>
             </div>
-            <a href="/index/invest/index.html"> <img class="jImg1 sbImg" src="<{'web/images/QQ图片20210303173424.jpg'|static}>"></a>
+            <a href="<{url('integral')}>.html"> <img class="jImg1 sbImg" src="<{'web/images/QQ图片20210303173424.jpg'|static}>"></a>
             <!-- <img class="jImg1 sbImg" src="<{'web/images/QQ图片20210303173424.jpg'|static}>">-->
             <style type="text/css">
                 .wrap{min-width: 320px;max-width:768px;margin:0 auto;overflow:hidden;position:relative;} .htit{line-height:1rem;padding:0 .3rem;color:#ff8e2e;font-size: .4rem;margin:1rem 0 .4rem 0} .wrapper02 {position:relative;height: 1.5rem;width: 94%;overflow: hidden;margin:10px auto;} .wrapper02 .scroller {position:absolute} .wrapper02 .scroller li {height: 1.5rem;color:#333;float: left;line-height: 1.5rem;font-size: .4rem;text-align: center;border-radius: 10px;} .wrapper02 .scroller li a{color:#333;display:block;margin:0 .3rem;text-decoration: none;} .wrapper02 .scroller li.cur{background:#1cbb9b} .wrapper02 .scroller li.cur a
@@ -232,22 +232,23 @@
             <div class="jitem">
                 <h1 class="jh1">热门好物</h1>
                 <ul class="jiUl" style="clear: both;margin-top: 10px;">
-                    <a href="/index/invest/detail/id/220.html">
+                    <{foreach $_data as $item}>
+                    <a href="<{url('goods', [$item.id])}>.html">
                         <li class="jiLi sbImg">
                             <img class="jiLimg" style="min-height:85px;max-height:245.91px;"
-                                 src="/uploads/images/20210310/6562919f7bc76d619f42ce687f69aa9a.jpg">
+                                 src="<{null|attachment}>/<{$item.cover}>">
 
-                            <p class="jiPtxt">家用拖把</p>
+                            <p class="jiPtxt"><{$item.title}></p>
 
                             <p class="jiPtxt1">限量抢购</p>
 
                             <div class="jiPtxt2">
                                 <p class="cltxt1">
-                                    <span>599</span>积分+
-                                    <span>39</span>元</p></div>
+                                    <span><{$item.integral}></span>积分+
+                                    <span><{$item.price}></span>元</p></div>
                         </li>
                     </a>
-
+                    <{/foreach}>
                 </ul>
             </div>
             <div style="margin-top:55px;line-height:15px;height:15px; font-size:6px;">@本次活动所有解释权归优品商城所有</div>
@@ -267,14 +268,14 @@
             $('.wrapper').navbarscroll();
             $(".clearfix li").click(function () {
                 var id = $(this).attr('data-id');
-                $.post("/index/index/getshop.html", {'id':id}, function (res) {
+                $.post("<{url('goods-list')}>", {'cid':id}, function (res) {
                     console.log(res);
                     var htmls = '';
                     for (var i = 0; i < res.length; i++) {
                         if (res[i].has_number < 1) {
                             htmls += '<a href="javascript:void(0)">';
                         } else {
-                            htmls += '<a href="/index/invest/detail/id/' + res[i].id + '.html">';
+                            htmls += '<a href="<{url('goods')}>/' + res[i].id + '.html">';
                         }
                         htmls += '<li class="jiLi sbImg">'
                                 + '<img class="jiLimg" style="min-height:85px;max-height:245.91px;" src="' + res[i].pic + '">';
@@ -291,8 +292,8 @@
                         htmls += '</p>'
                                 + '<div class="jiPtxt2">'
                                 + '<p class="cltxt1">'
-                                + '<span>' + res[i].has_jifen + '</span>积分+'
-                                + '<span>' + res[i].vip_price + '</span>元</p></div>'
+                                + '<span>' + res[i].integral + '</span>积分+'
+                                + '<span>' + res[i].price + '</span>元</p></div>'
                                 + '</li>'
                                 + '</a>';
                     }

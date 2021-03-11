@@ -74,6 +74,20 @@ class PayParamRepository extends Repository {
 		return $data;
 	}
 
+    public function getAliParam()
+    {
+        $enabled = catalog_search('status.param_status.enabled', 'id');
+        $type = catalog_search('fields.pay_type.ali', 'id');
+        return PayParam::where('param_status', $enabled)->where('pay_type', $type)->first();
+    }
+
+	public function getWxParam()
+    {
+        $enabled = catalog_search('status.param_status.enabled', 'id');
+        $type = catalog_search('fields.pay_type.wx', 'id');
+        return PayParam::where('param_status', $enabled)->where('pay_type', $type)->first();
+    }
+
     public function style(&$params)
     {
         $enabled = catalog_search('status.param_status.enabled', 'id');

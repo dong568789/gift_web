@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\OrderMarkRepository;
 use App\Tools\Payment;
 use Carbon\Carbon;
 use App\Tools\Payment\FanQie;
@@ -27,7 +28,7 @@ class OrderController extends CoreController
 	 */
 	public function store(Request $request)
 	{
-	    $keys = ['number', 'gid', 'mark', 'pay_type'];
+	    $keys = ['number', 'gid', 'pay_type', 'realname', 'mobile', 'address', 'mark'];
 
         $data = $this->censor($request, 'order.store', $keys);
 
@@ -57,57 +58,14 @@ class OrderController extends CoreController
         }
 	}
 
-	public function callback(Request $request)
-    {
-        $input = $request->all();
-        logger()->info("callback:" . print_r($input, 1));
-
-        $oRepo = new OrderRepository();
-
-        $order = $oRepo->findByOrderId($input['order_id']);
-
-        if (empty($order)) {
-            logger()->info("callback:订单不存在");
-            return "err";
-        }
-        $success = catalog_search("status.order_status.success", 'id');
-        if ($order->order_status->id == $success){
-            return "success";
-        }
-
-        $tradeMoney = $input['pay_money'] / 100;
-        if (bccomp($order->amount, $tradeMoney) != 0) {
-            logger()->info("callback:回调金额不一致");
-            return "err";
-        }
-
-        $fanQie = new FanQie();
-
-        $sign = $input['sign'];
-        unset($input['sign']);
-
-        if ($fanQie->makeSign($input) != $sign) {
-            logger()->info("callback:签名不一致");
-            return "err";
-        }
-
-        //发货
-        $order->callback_at = Carbon::now();
-
-        $result = $oRepo->sendAccount($order);
-
-        return "success";
-    }
-
     public function searchOrder(Request $request)
     {
-        $contact = $request->input('contact', '');
+        $mobile = $request->input('mobile', '');
 
         $oRepo = new OrderRepository();
 
-        $orders = $oRepo->getByConcat($contact);
+        $orders = $oRepo->getByMobile($mobile);
 
-        $this->_orders = $orders;
-        return $this->view('web.search');
+        return response()->json(!$orders->isEmpty() ? $orders->toArray() : []);
     }
 }

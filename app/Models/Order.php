@@ -17,10 +17,4 @@ class Order extends Model
     {
         return $this->belongsTo("App\\Models\\Goods", "gid", "id");
     }
-
-    public function mark()
-    {
-        return $this->hasOne("App\\Models\\OrderMark", 'oid', 'id');
-    }
-
 }

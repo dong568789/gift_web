@@ -7,7 +7,7 @@ class Payment{
 
     public function run(Order $order)
     {
-        return $this->getInstance($order->pay_type->title)->run($order);
+        return $this->getInstance($order->pay_type->title)->pay($order);
     }
 
     protected function getInstance($name)

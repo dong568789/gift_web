@@ -26,18 +26,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger("pay_type")->index()->comment="支付方式";
             $table->string('ip')->nullable()->comment="IP";
             $table->timestamp('callback_at')->nullable()->comment="回调时间";
-
-            $table->timestamps();
-        });
-
-        Schema::create('order_marks', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('oid')->unique()->comment="";
             $table->string('realname')->nullable()->comment="电话";
-            $table->string('tel')->nullable()->comment="电话";
+            $table->string('mobile')->nullable()->comment="电话";
             $table->string('address')->nullable()->comment="地址";
             $table->string('mark')->nullable()->comment="备注";
-
             $table->timestamps();
         });
     }

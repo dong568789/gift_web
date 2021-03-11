@@ -10,6 +10,15 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-4">
+		<label class="col-md-3 control-label" for="mobile">手机号</label>
+		<div class="col-md-9">
+			<div class="input-group">
+				<input type="text" id="mobile" name="f[mobile]" class="form-control" placeholder="请输入手机号..."
+					   value="<{$_filters.mobile.eq}>">
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-sm-4">
 		<label class="col-md-3 control-label" for="order_status">状态</label>
 		<div class="col-md-9">
 			<div class="input-group">

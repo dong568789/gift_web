@@ -10,8 +10,20 @@ return [
 			'name' => '商品',
 			'rules' => 'numeric',
 		],
-		'mark' => [
+		'realname' => [
+			'name' => '联系人',
+			'rules' => 'required',
+		],
+		'mobile' => [
+			'name' => '手机号',
+			'rules' => 'required',
+		],
+		'address' => [
 			'name' => '联系方式',
+			'rules' => 'required',
+		],
+		'mark' => [
+			'name' => '备注',
 			'rules' => 'required',
 		],
 		'pay_type' => [

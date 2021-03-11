@@ -21,17 +21,17 @@
         </tr>
         <tr>
             <td>联系人：</td>
-            <td><{$_data.mark.realname}></td>
+            <td><{$_data.realname}></td>
             <td>联系电话：</td>
-            <td><{$_data.mark.tel}></td>
+            <td><{$_data.tel}></td>
         </tr>
         <tr>
             <td>地址：</td>
-            <td><{$_data.mark.address}></td>
+            <td><{$_data.address}></td>
         </tr>
         <tr>
             <td>备注：</td>
-            <td><{$_data.mark.mark}></td>
+            <td><{$_data.mark}></td>
         </tr>
         </tbody>
     </table>

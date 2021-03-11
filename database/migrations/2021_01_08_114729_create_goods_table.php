@@ -24,6 +24,7 @@ class CreateGoodsTable extends Migration
             $table->integer('hot')->nullable()->default(0)->comment="热度";
             $table->unsignedInteger('cover')->nullable()->default(0)->comment="封面";
             $table->json('att_ids')->nullable()->default(0)->comment="5图";
+            $table->string('attr')->nullable()->comment="属性";
             $table->integer('order')->nullable()->default(0)->comment="Sort";
             $table->string("description")->nullable()->comment="描述";
             $table->unsignedInteger("goods_status")->comment="";

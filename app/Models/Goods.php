@@ -17,6 +17,8 @@ class Goods extends Model
         'att_ids' => 'array',
     ];
 
+    protected $appends = ['save', 'attachment_urls'];
+
 
     public function getAttachmentUrlsAttribute()
     {
@@ -25,6 +27,11 @@ class Goods extends Model
             foreach ($this->att_ids as $key => $value)
                 $r[$key] = Helpers::getUrl($value);
         return $r;
+    }
+
+    public function getSaveAttribute()
+    {
+        return ceil($this->original_price - $this->price);
     }
 }
 

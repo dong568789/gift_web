@@ -12,13 +12,13 @@ use Illuminate\Support\Arr;
 
 class OrderRepository extends Repository {
 
+// callback 状态
+    const CALLBACK_SUCCESS=1; // 订单更新成功
+    const CALLBACK_EXIST=2; // 订单不存在
+    const CALLBACK_STATUS=3; // 订单状态不合法
+    const CALLBACK_AMOUNT=4; // 订单金额不一致
+    const CALLBACK_FAIL=5; // 订单更新失败
 
-    public function separateData($data)
-    {
-        $mark = Arr::pull($data, 'mark');
-
-        return compact('data', 'mark');
-    }
 	public function prePage()
 	{
 		return config('size.models.'.(new Order)->getTable(), config('size.common'));
@@ -41,11 +41,8 @@ class OrderRepository extends Repository {
 
 	public function store(array $data)
 	{
-	    $d = $this->separateData($data);
-	    extract('data', 'mark');
-		return DB::transaction(function() use ($data, $mark) {
+		return DB::transaction(function() use ($data) {
 			$model = Order::create($data);
-			$model->mark()->create($mark);
 			return $model;
 		});
 	}
@@ -89,8 +86,39 @@ class OrderRepository extends Repository {
 		return $data;
 	}
 
+	public function getByMobile(string $mobile)
+    {
+        return Order::where('mobile', $mobile)->orderBy('id', 'desc')->get();
+    }
+
 	public function createOrderSn()
     {
         return date("YmdHis") . rand(1111, 9999);
+    }
+
+    public function callback($params)
+    {
+        $order_no = $params['out_trade_no'];
+        $order = $this->findByOrderId($order_no);
+        if($order->order_status->id != catalog_search('status.order_status.normal', 'id')){
+            return self::CALLBACK_STATUS;
+        }
+        !empty($params['trade_no']) && $order->third_id =  $params['trade_no'];
+
+        $order->order_status = catalog_search('status.order_status.success', 'id');
+        logger()->info('money == :'.(float)$order->amount.'-----'.(float)$params['total_amount']);
+
+        if(bccomp($order->amount, $params['total_amount']) != 0){
+            return self::CALLBACK_AMOUNT;
+        }
+
+        $result = $order->save();
+
+        if(!$result){
+            return self::CALLBACK_FAIL;
+        }
+
+        return self::CALLBACK_SUCCESS;
+        logger()->info('callbackCp:'.print_r($order->order_id, true));
     }
 }

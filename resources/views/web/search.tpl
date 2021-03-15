@@ -24,10 +24,10 @@
             <p class="toplih"></p>--></ul>
         <div style="width:100px;height:50px;"></div>
         <div class="search" id="search" method="get">
-            <input type="hidden" name="pId" value="832679355875328">
+            <input type="hidden" name="pId" value="">
             <div class="left">
                 <img src="<{'web/images/search.png'|static}>">
-                <input type="text" name="phone" id="phone_search" value="13037744410" placeholder="请输入下单手机号查询"></div>
+                <input type="text" name="phone" id="phone_search" value="" placeholder="请输入下单手机号查询"></div>
             <button class="right" id="searchBtn">查询</button></div>
         <!-- 没有订单 -->
         <div class="noOrder" id="nodingdan" style="display:inline-block;">
@@ -47,7 +47,7 @@
         <div class="jitem" style="clear:both;margin-top:35px;">
             <h1 class="jh1">猜你喜欢</h1>
             <ul class="jiUl" style="clear: both;margin-top: 10px;position:relative;bottom:60px;">
-                <{foreach $_data as $item}>
+                <{foreach $_likeList as $item}>
                 <a href="<{url('goods', [$item.id])}>.html">
                     <li class="jiLi sbImg">
                         <img class="jiLimg" style="min-height:85px;" src="<{null|attachment}>/<{$item.cover}>">
@@ -67,34 +67,7 @@
         <input id="copy_content" type="hidden" value="" style="position: absolute;top: 0;left: 0;opacity: 0;z-index: -10;">
         <script type="text/javascript"></script>
         <div>
-            <style type="text/css">/*底部导航*/ .tab{ width: 100%; position: fixed; bottom: 0; left: 0; font-size: 0; background-color: #fff; padding: 5px 0; z-index: 10; } .tab1{ display: inline-block; vertical-align: middle; width: 25%; text-align: center; } .tabImg{ width: 27px; height: 27px; } .tabTxt{ width: 100%; margin-top: 5px; font-size: 12px; color: #666666; } .tabTxt1{ width: 100%; margin-top: 2px; font-size: 12px; color: #FF2741; }</style>
-            <ul class="tab">
-                <li class="tab1">
-                    <a href="<{url('/')}>" target="_parent">
-                        <img class="tabImg" src="<{'web/images/falme.png'|static}>" _rp="true" _rp_category="底部导航" _rp_action="购物节">
-                        <p class="tabTxt">购物节</p></a>
-                </li>
-                <li class="tab1">
-                    <a href="<{url('integral')}>.html" target="_parent">
-                        <img class="tabImg" src="<{'web/images/inter.png'|static}>" _rp="true" _rp_category="底部导航" _rp_action="积分中心">
-                        <p class="tabTxt">积分中心</p></a>
-                </li>
-                <!-- <li class="tab1">
-       <a href="/index/invest/wine.html" target="_parent">
-         <img class="tabImg" src="<{'web/images/'|static}>winebo.png" _rp="true" _rp_category="底部导航" _rp_action="我的酒庄">
-         <p class="tabTxt">我的酒庄</p></a>
-     </li>-->
-                <li class="tab1">
-                    <a href="<{url('search')}>.html" target="_parent">
-                        <img class="tabImg" src="<{'web/images/myorder1.png'|static}>" _rp="true" _rp_category="底部导航" _rp_action="我的订单">
-                        <p class="tabTxt1">我的订单</p></a>
-                </li>
-                <li class="tab1">
-                    <a href="<{url('member')}>.html" target="_parent">
-                        <img class="tabImg" src="<{'web/images/logs.png'|static}>" _rp="true" _rp_category="底部导航" _rp_action="个人中心">
-                        <p class="tabTxt">个人中心</p></a>
-                </li>
-            </ul>
+            <{include file="common/foot.inc.tpl"}>
         </div>
         <script type="text/javascript">
             $('#searchBtn').click(function() {
@@ -108,8 +81,8 @@
                         cache: false,
                         async: true,
                         success: function(result) {
-                            if (result != null) {
-                                var l = result.length;
+                            if (result.result == 'success') {
+                                var l = result.data.length;
 
                                 if (l == 0) {
                                     document.getElementById("nodingdan").style.display = 'block';
@@ -121,7 +94,7 @@
                                     $("#youdingdan").html("");
 
                                     for (var i = 0; i < l; i++) {
-                                        var order = result[i];
+                                        var order = result.data[i];
                                         var html = '';
 
                                         var state = '你的货品已揽单24小时内发货';
@@ -164,23 +137,6 @@
 
             });
         </script>
-        <div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;">
-            <div id="trans-tooltip">
-                <div id="tip-left-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-top.png}&quot;);"></div>
-                <div id="tip-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-top.png}&quot;) repeat-x;"></div>
-                <div id="tip-right-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-top.png}&quot;);"></div>
-                <div id="tip-right" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right.png}&quot;) repeat-y;"></div>
-                <div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-bottom.png}&quot;);"></div>
-                <div id="tip-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-bottom.png}&quot;) repeat-x;"></div>
-                <div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-bottom.png}&quot;);"></div>
-                <div id="tip-left" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left.png}&quot;);"></div>
-                <div id="trans-content"></div>
-            </div>
-            <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-bottom.png}&quot;);"></div>
-            <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-top.png}&quot;);"></div>
-        </div>
-        <div></div>
     </div>
 </div>
-    <{include file="common/foot.inc.tpl"}>
     <{/block}>

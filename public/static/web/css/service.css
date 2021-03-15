@@ -1,0 +1,133 @@
+.service {
+    width: 100%;
+    min-height: 100vh;
+    font-size: 0;
+    background-color: #ededed;
+}
+
+/*顶部*/
+.ser-top {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+}
+
+.ser-top img {
+    width: 30px;
+    margin-top: 15px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ser-top p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+/*对话*/
+.ser-box {
+		    width: 100%;
+		}
+		
+		.ser-ul {
+		    width: 95%;
+		    margin: 0 auto;
+		}
+		.ser-img {
+		    display: inline-block;
+		    vertical-align: top;
+		    margin-top: 2px;
+		}
+		.ser-kf {
+		    width: 90%;
+		    float: left;
+		    margin-bottom: 15px;
+		}
+		
+		
+		.ser-kf p {
+		    background-color: #fff;
+		}
+		.ser-kf-img1 {
+		    width: 10px;
+		    margin-top: 5px;
+		}
+		
+		.ser-kf-img2 {
+		    margin-right: 10px;
+		    width: 35px;
+		    height: 35px; 
+		}
+		
+		.ser-user {
+		    float: right;
+		    width: 90%;
+		    margin-bottom: 15px;
+		}
+		
+		.ser-user-img1 {
+		    width: 10px;
+		    margin-top: 5px;
+		}
+		
+		.ser-user-img2 {
+		    margin-left: 10px;
+		    width: 35px;
+		    height: 35px; 
+		}
+		
+		.ser-user p {
+		    background-color: #95ec69;
+		}
+		
+		
+		.ser-ul li p {
+		    display: inline-block;
+		    vertical-align: top;
+		    font-size: 16px;
+		    width: calc(100% - 90px);
+		    border-radius: 3px;
+		    padding: 5px 10px;
+		
+		}
+
+/*按钮*/
+.ser-but {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.ser-but input {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 100px);
+    height: 40px;
+    margin-left: 5px;
+    border: none;
+    background-color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    text-indent: 5px;
+}
+
+.ser-but p {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #000;
+}

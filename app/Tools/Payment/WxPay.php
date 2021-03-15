@@ -1,9 +1,11 @@
 <?php
-namespace App\Tools;
+namespace App\Tools\Payment;
 
 use App\Models\Order;
-use App\Repositories\PayParamRepository;
+use App\Tools\Helper;
 use Omnipay\Omnipay;
+
+use App\Repositories\PayParamRepository;
 
 class WxPay {
 
@@ -28,7 +30,14 @@ class WxPay {
         $gateway    = Omnipay::create($driver);
         $this->setConfig($gateway);
         $request  = $gateway->purchase($order);
-        return $request->send();
+        $response = $request->send();
+        $data = $response->getData();
+        if ($response->isSuccessful())
+        {
+            return ['status' => true, 'code_url' => $response->getCodeUrl];
+        } else {
+            throw new \Exception($data['return_msg']);
+        }
 //        $response->getData(); //For debug
 //        $response->getAppOrderData(); //For WechatPay_App
 //        $response->getJsOrderData(); //For WechatPay_Js

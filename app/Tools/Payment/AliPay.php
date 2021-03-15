@@ -1,5 +1,5 @@
 <?php
-namespace App\Tools;
+namespace App\Tools\Payment;
 
 use App\Models\Order;
 use App\Repositories\PayParamRepository;

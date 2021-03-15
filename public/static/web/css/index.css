@@ -1,0 +1,486 @@
+.content {
+    width: 100%;
+    font-family: 'Hei';
+}
+
+.I_img {
+    width: 100%;
+    display: block;
+}
+.dw_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    margin: auto;
+}
+.zz {
+    position: fixed;
+    z-index: 500;
+    background-color: rgba(0, 0, 0, .7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pon {
+    position: absolute;
+    width: 80%;
+    top: 10vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 50;
+}
+
+.zbox {
+    position: absolute;
+    width: 80%;
+    top: 15vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 50;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px 0;
+    font-size: 0;
+}
+
+.zp {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}
+
+.zul {
+    width: 90%;
+    margin: 20px auto 0;
+}
+
+.zuli {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.zlipd1 {
+    float: left;
+    width: 69%;
+}
+
+.ds {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.zlipd2 {
+    float: right;
+    width: 30%;
+    text-align: right;
+}
+
+.zliImg {
+    width: 27px;
+}
+
+.zlip1 {
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.zlip2 {
+    background-color: rgb(216, 40, 63);
+    color: #fff;
+    font-size: 14px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+}
+
+
+.zlip3 {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.zrad {
+    width: 20px;
+    height: 20px;
+}
+
+.zulbt {
+    width: 100%;
+    background-color: rgb(236, 32, 43);
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 30px;
+}
+
+/*box*/
+
+.I_box {
+    width: 100%;
+    background-color: rgb(249, 249, 249);
+}
+
+.I_title {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding: 10px 0;
+    background-color: rgb(240, 240, 240);
+}
+
+.I_t_h1 {
+    position: relative;
+    z-index: 5;
+    font-size: 17px;
+    background-color: rgb(240, 240, 240);
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.I_t_hen {
+    position: absolute;
+    width: 45%;
+    left: 0;
+    background-color: #000;
+    top:19px;
+    height: 1px;
+    right: 0;
+    margin: 0 auto;
+}
+
+/* title */
+.I_txt {
+    width: 95%;
+    margin: 15px auto 10px;
+    font-size: 0;
+}
+
+.I_t_h2 {
+    float: left;
+    font-size: 16px;
+    text-align: left;
+    font-weight: 500;
+    width: 62%;
+}
+
+.I_txt_ul {
+    float: right;
+    width: 37%;
+    white-space: normal;
+    overflow: hidden;
+    text-align: right;
+}
+
+.I_txt_ul img {
+    width: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.I_txt_ul li {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.I_txt_ul p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    text-align: center;
+    margin: 0 3px;
+}
+
+.I_txt_li1 {
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 2px;
+}
+
+.I_txt_li2 {
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 2px;
+    background-color: rgb(248, 72, 54);
+}
+
+.I_txt2 {
+    width: 95%;
+    margin: 15px auto 10px;
+    font-size: 0;
+}
+
+.I_txt_p {
+    float: left;
+    width: 50%;
+}
+
+.I_txt_p p {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.I_txt_p1 {
+    font-size: 16px;
+}
+
+.I_txt_p2 {
+    font-size: 16px;
+    color: rgb(208, 30, 62);
+    margin-left: 5px;
+}
+
+.I_txt_p3 {
+    background-color: rgb(216, 40, 63);
+    color: #fff;
+    font-size: 14px;
+    padding: 1px 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+}
+
+.I_txt_p4 {
+    float: right;
+    width: 49%;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* from */
+.I_form {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.I_form li {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.I_form li input {
+    width: 95%;
+    padding: 2% 2%;
+    font-size: 16px;
+    border: 1px solid #b5b5b5;
+}
+.I_form li input:focus{
+    border: 1px solid #b5b5b5;
+    outline-color: #b5b5b5;
+}
+.I_form li select {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32%;
+    margin: 0;
+    font-size: 16px;
+    height: 40px;
+    text-align: center;
+    text-align-last: center;
+    /*appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;*/
+    /* background: url(.https://jingdongyouxuan.com/mallSix/thy/.https:/jingdongyouxuan.com/mallSix/thy/images/san.png) no-repeat scroll 80% 50% transparent;
+     background-size: 20px 20px;*/
+}
+
+
+
+
+#hous {
+    width: 100%;
+    margin: 0;
+    font-size: 16px;
+    height: 40px;
+    text-align: left;
+    text-align-last: left;
+    text-indent: 5px;
+    /*    appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;*/
+    /*    background: url(.https://jingdongyouxuan.com/mallSix/thy/.https:/jingdongyouxuan.com/mallSix/thy/images/san.png) no-repeat scroll right center transparent;
+        background-size: 20px 20px;*/
+}
+
+.I_li_img1 {
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.I_li_p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.I_li_img2 {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+.I_li_p1 {
+    float: right;
+    font-size: 16px;
+    color: rgb(229, 3, 15);
+}
+
+.I_li_p2 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.I_li_p3 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+    text-align: right;
+    font-size: 16px;
+}
+
+.I_li_p3 b {
+    color: rgb(229, 3, 15);
+    font-size: 20px;
+}
+
+.I_form_but {
+    width: 100%;
+    height: 40px;
+    line-height: 32px;
+    font-size: 17px;
+    color: #fff;
+    background-color: #e5040f;
+    border-radius: 3px;
+    padding: 0;
+    border: 4px solid #e5040f;
+}
+
+/*轮播*/
+.swiper {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: rgb(240, 240, 240);
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+
+.swiper-slide p {
+    width: 95%;
+    height: 20px;
+    margin: 0 auto;
+    color: #333;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.swiper-button-prev {
+    color: #000;
+}
+
+
+/*底部按钮*/
+.I_but {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.I_but_box {
+    width: 100%;
+    background-color: #fff;
+    font-size: 0;
+    padding: 8px 0;
+}
+
+.I_but_ul1 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15%;
+    text-align: center;
+}
+
+.I_but_ul1 img {
+    width: 42%;
+    margin-bottom: 2px;
+}
+
+.I_but_ul1 p {
+    width: 100%;
+    font-size: 15px;
+}
+
+.I_but_ul2 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 35%;
+    text-align: center;
+}
+
+.I_but_ul2 p {
+    float: right;
+    width: 90%;
+    padding: 4% 2%;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: linear-gradient(to right, #ffc400, #ff9502);
+    background: -moz-linear-gradient(to right, #ffc400, #ff9502);
+    background: -o-linear-gradient(to right, #ffc400, #ff9502);
+    background: -webkit-linear-gradient(to right, #ffc400, #ff9502);
+}
+
+.I_but_ul3 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 35%;
+    text-align: center;
+}
+
+.I_but_ul3 p {
+    float: left;
+    width: 90%;
+    padding: 4% 2%;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(to left, #ff5828, #ff0340);
+    background: -moz-linear-gradient(to left, #ff5828, #ff0340);
+    background: -o-linear-gradient(to left, #ff5828, #ff0340);
+    background: -webkit-linear-gradient(to left, #ff5828, #ff0340);
+}

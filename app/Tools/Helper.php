@@ -94,23 +94,27 @@ class Helper {
         return substr($orderid, 0, -5);
     }
 
-    public static function getClientId()
+    public static function getClient()
     {
-        return Cookie::get('client_id');
+        $info = Cookie::get('client-info');
+        if (!empty($info)) {
+            return json_decode($info, true);
+        }
+        return [];
     }
 
-    public static function setClientId($client_id, $minutes = 0)
+    public static function setClient(array $info, $minutes = 0)
     {
-        Cookie::queue('client_id', $client_id, $minutes);
+        return Cookie::queue('client-info', json_encode($info), $minutes);
     }
 
     public static function hashClient()
     {
-        return Cookie::has('client_id');
+        return Cookie::has('client-info');
     }
 
     public static function deleteClient()
     {
-        return Cookie::forget('client_id');
+        return Cookie::forget('client-info');
     }
 }

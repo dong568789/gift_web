@@ -18,9 +18,13 @@
     $router->get('goods-list', 'HomeController@goodsList');
     $router->get('goods/{id}.html', 'HomeController@goods')->where('id', '[\d]+');
     $router->get('integral.html', 'HomeController@integral');
+    $router->get('member.html', 'HomeController@member');
+    $router->get('chat.html', 'HomeController@chat');
+    $router->post('qiandao', 'HomeController@qiandao');
     $router->get('search.html', 'HomeController@search');
-    $router->post('search-order', 'OrderController@searchOrder');
+    $router->get('search-order', 'OrderController@searchOrder');
     $router->post('order/store', 'OrderController@store');
+    $router->get('order/{order_id}', 'OrderController@index')->where('order_id', '[\d]+');;
     $router->post('pay/ali_notify', 'NotifyController@ali_notify');//支付宝支付回调
     $router->get('pay/ali_return', 'NotifyController@ali_return');//支付宝支付回调
     $router->post('pay/wx_notify', 'NotifyController@wx_notify');//微信支付回调

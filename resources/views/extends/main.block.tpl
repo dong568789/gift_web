@@ -7,7 +7,7 @@
 	<{block "head-title"}><{include file="common/title.inc.tpl"}><{/block}>
 	<meta name="csrf-token" content="<{csrf_token()}>">
 	<{block "head-meta-responsive"}>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="renderer" content="webkit">
 	<{/block}>

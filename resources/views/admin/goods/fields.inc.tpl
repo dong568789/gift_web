@@ -9,15 +9,15 @@
 		<div class="form-group">
 			<label class="col-md-3 control-label" for="price">现价</label>
 			<div class="col-md-9">
-				<input type="price" id="price" name="price" class="form-control" placeholder="请输入单价"
+				<input type="price" id="price" name="price" class="form-control" placeholder="请输入现价"
 					   value="<{$_data.price}>">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="price">原价</label>
+			<label class="col-md-3 control-label" for="original_price">原价</label>
 			<div class="col-md-9">
-				<input type="price" id="price" name="price" class="form-control" placeholder="请输入单价"
-					   value="<{$_data.price}>">
+				<input type="price" id="original_price" name="original_price" class="form-control" placeholder="请输入原价"
+					   value="<{$_data.original_price}>">
 			</div>
 		</div>
 		<div class="form-group">

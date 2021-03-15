@@ -28,19 +28,17 @@ class OrderController extends CoreController
 	 */
 	public function store(Request $request)
 	{
-	    $keys = ['number', 'gid', 'pay_type', 'realname', 'mobile', 'address', 'mark'];
+	    $keys = ['gid', 'pay_type', 'realname', 'mobile', 'address'];
 
         $data = $this->censor($request, 'order.store', $keys);
 
-        if ($data['number'] <= 0 && $data['number'] > 10) {
-            return $this->error("购买数量只能是1到10之间");
-        }
         $goods = $this->repo->find($data['gid']);
         if (empty($goods)) {
             return $this->error("产品不存在");
         }
 
         $oRepo = new OrderRepository();
+        $data['number'] = 1;
         $data['order_id'] = $oRepo->createOrderSn();
         $data['amount'] = round($data['number'] * $goods->price, 2);
         $data['order_status'] = catalog_search('status.order_status.normal', 'id');
@@ -49,23 +47,41 @@ class OrderController extends CoreController
         $data['ip'] = $request->getClientIp();
 
         $order = $oRepo->store($data);
+
+        return response()->json(["result" => 'success', 'data' => ['order_id' => $order->order_id]]);
+
+	}
+
+	public function index(Request $request, $order_id)
+    {
+        $oRepo = new OrderRepository();
+        $order = $oRepo->findByOrderId($order_id);
+        if (empty($order))
+        {
+            return $this->error("订单错误");
+        }
+
         $payment = new Payment();
 
         try{
-            return $result = $payment->run($order);
+            $result = $payment->run($order);
+            return reponse()->redirect($result['code_url']);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }
-	}
+    }
 
     public function searchOrder(Request $request)
     {
         $mobile = $request->input('mobile', '');
 
+        if (empty($mobile)) {
+            return $this->error("请输入手机号");
+        }
         $oRepo = new OrderRepository();
 
         $orders = $oRepo->getByMobile($mobile);
 
-        return response()->json(!$orders->isEmpty() ? $orders->toArray() : []);
+        return response()->json(['result' => 'success', 'data' => (!$orders->isEmpty() ? $orders->toArray() : [])]);
     }
 }

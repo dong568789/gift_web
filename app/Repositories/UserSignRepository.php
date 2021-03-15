@@ -2,35 +2,35 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Addons\Core\Contracts\Repository;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Goods;
+use App\Models\UserSign;
 
-class GoodsRepository extends Repository {
+class UserSignRepository extends Repository {
 
 	public function prePage()
 	{
-		return config('size.models.'.(new Goods)->getTable(), config('size.common'));
+		return config('size.models.'.(new UserSign)->getTable(), config('size.common'));
 	}
 
 	public function find($id, array $columns = ['*'])
 	{
-		return Goods::with([])->find($id, $columns);
+		return UserSign::with([])->find($id, $columns);
 	}
 
 	public function findOrFail($id, array $columns = ['*'])
 	{
-		return Goods::with([])->findOrFail($id, $columns);
+		return UserSign::with([])->findOrFail($id, $columns);
 	}
 
 	public function store(array $data)
 	{
 		return DB::transaction(function() use ($data) {
-			$model = Goods::create($data);
+			$model = UserSign::create($data);
 			return $model;
 		});
 	}
@@ -46,13 +46,13 @@ class GoodsRepository extends Repository {
 	public function destroy(array $ids)
 	{
 		DB::transaction(function() use ($ids) {
-			Goods::destroy($ids);
+			UserSign::destroy($ids);
 		});
 	}
 
 	public function data(Request $request, callable $callback = null, array $columns = ['*'])
 	{
-		$model = new Goods;
+		$model = new UserSign;
 		$builder = $model->newQuery()->with([]);
 
 		$total = $this->_getCount($request, $builder, false);
@@ -65,7 +65,7 @@ class GoodsRepository extends Repository {
 
 	public function export(Request $request, callable $callback = null, array $columns = ['*'])
 	{
-		$model = new Goods;
+		$model = new UserSign;
 		$builder = $model->newQuery()->with([]);
 		$size = $request->input('size') ?: config('size.export', 1000);
 
@@ -74,4 +74,14 @@ class GoodsRepository extends Repository {
 		return $data;
 	}
 
+    /**
+     * is sign in
+     * @param int $client_id
+     */
+	public function check(int $client_id)
+    {
+        $now = Carbon::now();
+        $us = UserSign::where('client_id', $client_id)->where('created_at', '>=', $now->copy()->startOfDay())->where('created_at', '<=', $now->copy()->endOfDay())->first();
+        return $us;
+    }
 }

@@ -7,7 +7,7 @@ use App\Tools\Helper;
 
 class CoreController extends Controller {
 
-    public $client_id;
+    public $client;
 
 	public function __construct()
     {
@@ -24,10 +24,10 @@ class CoreController extends Controller {
     public function init()
     {
         if (!Helper::hashClient()) {
-            $this->client_id = mt_rand(90000, 99999);
-            Helper::setClientId($this->client_id, 86400);
+            $this->client = ['id' => mt_rand(90000, 99999), 'integral' => 8850];
+            Helper::setClient($this->client, 86400 * 7);
         } else {
-            $this->client_id = Helper::getClientId();
+            $this->client = Helper::getClient();
         }
     }
 }

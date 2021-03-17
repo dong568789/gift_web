@@ -149,7 +149,7 @@
                     $.post("<{url('qiandao')}>",function(res){
                         if(res.result == 'success'){
                             alert(res.message);
-                            $(".jifenzhi").html(res.data.jifen);
+                            $(".jifenzhi").html(res.data.integral);
                         }else{
                             alert(res.message);
                         }

@@ -34,7 +34,7 @@ class WxPay {
         $data = $response->getData();
         if ($response->isSuccessful())
         {
-            return ['status' => true, 'code_url' => $response->getCodeUrl];
+            return ['status' => true, 'code_url' => $data['mweb_url']];
         } else {
             throw new \Exception($data['return_msg']);
         }

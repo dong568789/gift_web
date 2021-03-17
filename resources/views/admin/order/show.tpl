@@ -23,7 +23,7 @@
             <td>联系人：</td>
             <td><{$_data.realname}></td>
             <td>联系电话：</td>
-            <td><{$_data.tel}></td>
+            <td><{$_data.mobile}></td>
         </tr>
         <tr>
             <td>地址：</td>

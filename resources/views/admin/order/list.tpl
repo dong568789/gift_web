@@ -12,6 +12,7 @@
 <th>订单号</th>
 <th>产品</th>
 <th>金额</th>
+<th>积分</th>
 <th>数量</th>
 <th>支付号</th>
 <th>状态</th>
@@ -23,6 +24,7 @@
 <td data-from="order_id">{{data}}</td>
 <td data-from="goods_desc">{{data}}</td>
 <td data-from="amount">{{data}}</td>
+<td data-from="integral">{{data}}</td>
 <td data-from="number">{{data}}</td>
 <td data-from="third_id">{{data}}</td>
     <td data-from="order_status"><span class="label label-danger">{{data.title}}</span></td>

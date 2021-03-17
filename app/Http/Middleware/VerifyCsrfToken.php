@@ -30,6 +30,8 @@ class VerifyCsrfToken extends Middleware
 		'wechat/feedback/*',
 		'wechat/feedback/*/*',
 		'install/*',
-        'order/*'
+        'order/*',
+        'pay/*',
+        'qiandao',
 	];
 }

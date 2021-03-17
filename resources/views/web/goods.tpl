@@ -28,7 +28,7 @@
             <li class="tu1 shouye" _rp="true" _rp_action="我的积分" _rp_category="年货节" _rp_label="<{$_goods.title}>"
                 _rp_value="<{$_goods.id}>">
                 <p class="tup1">我的积分</p>
-                <p class="tup2" style="font-size: 16px;"><span class="jifenzhi"><{$_myInventory}></span></p>
+                <p class="tup2" style="font-size: 16px;"><span class="jifenzhi"><{$_myIntegral}></span></p>
             </li>
         </ul>
         <p class="hen"></p>
@@ -274,20 +274,9 @@
 
 
         <div class="shopimg" style="display: block;margin-bottom: 50px">
-            <p>
-                <img alt="颜色01极光色" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/mV2-ksyZXdCRoQfNKn4IQQ.jpg">
-                <img alt="颜色03亮黑色" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/BeviTl7rBFL-atCxscFLnA.jpg">
-                <img alt="颜色05珠光贝母" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/9jn33p96kxyfj64xCCE_cw.jpg">
-                <img alt="颜色02天空之境" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/lI4pPT93xYMaLhs_Q96PqA.jpg">
-                <img alt="宝贝主图03" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/DiwRUpBkOKtK1iEtEgTlzg.jpg">
-                <img alt="宝贝主图04" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/8r68D6T7pD9V1xb8_OoZVQ.jpg">
-                <img alt="详情08" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/OUDFDO2J5UPiyZYKrRIgZg.jpg">
-                <img alt="详情07" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/6zE2K6KcQjtyuklZpnQSaQ.jpg">
-                <img alt="详情11" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/nj8CKol6vLsD8V8n3CNR2A.jpg">
-                <img alt="宝贝主图05" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/8syjpRNBUeetk444A-Ks-A.jpg">
-                <img alt="颜色04赤茶橘" src="https://uimgproxy.suning.cn/uimg1/sop/commodity/Q8hUWKb3iTudzEQyW_sjBA.jpg">
-                <{4}>
-            </p>
+
+            <{$_goods.content nofilter}>
+
             <div class="swiper" style="margin-bottom:60px;margin-top:10px;">
                 <div class="swiper-container swiper-container-initialized swiper-container-vertical swiper-container-android" id="swiperc02">
                     <div class="swiper-wrapper" style="transition-duration: 300ms; transform: translate3d(0px, -200px, 0px);">
@@ -633,11 +622,9 @@
                 alert('详细地址过长,请重新输入');
                 return false;
             }
-            var jifen = '<{$_myInventory}>';
-            var goodPoints= '<{$_goods.integral}>';
+            var jifen = Number('<{$_myIntegral}>');
+            var goodPoints= Number('<{$_goods.integral}>');
             if (jifen < goodPoints){
-                $('#posttongji').attr("_rp_value",tel);
-                $('#posttongji').click();
                 alert("购买商品所需积分不足，无法下单");
                 return false;
             }

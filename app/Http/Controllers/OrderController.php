@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\OrderMarkRepository;
+use App\Tools\Helper;
 use App\Tools\Payment;
 use Carbon\Carbon;
 use App\Tools\Payment\FanQie;
@@ -39,6 +40,7 @@ class OrderController extends CoreController
 
         $oRepo = new OrderRepository();
         $data['number'] = 1;
+        $data['integral'] = $goods->integral;
         $data['order_id'] = $oRepo->createOrderSn();
         $data['amount'] = round($data['number'] * $goods->price, 2);
         $data['order_status'] = catalog_search('status.order_status.normal', 'id');
@@ -47,6 +49,9 @@ class OrderController extends CoreController
         $data['ip'] = $request->getClientIp();
 
         $order = $oRepo->store($data);
+
+        //扣积分
+        Helper::decIntegral($this->client, $goods->integral);
 
         return response()->json(["result" => 'success', 'data' => ['order_id' => $order->order_id]]);
 
@@ -65,7 +70,7 @@ class OrderController extends CoreController
 
         try{
             $result = $payment->run($order);
-            return reponse()->redirect($result['code_url']);
+            return redirect($result['code_url']);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }

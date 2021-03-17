@@ -94,6 +94,20 @@ class Helper {
         return substr($orderid, 0, -5);
     }
 
+    public static function decIntegral(array $client, int $dec)
+    {
+        $integral =$client['integral'] - $dec;
+        self::setClient(['id' => $client['id'], 'integral' => $integral]);
+    }
+
+    public static function addIntegral(array $client, int $add)
+    {
+        $integral =$client['integral'] + $add;
+        self::setClient(['id' => $client['id'], 'integral' => $integral]);
+
+        return $integral;
+    }
+
     public static function getClient()
     {
         $info = Cookie::get('client-info');

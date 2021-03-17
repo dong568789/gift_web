@@ -36,6 +36,7 @@ class HomeController extends CoreController
         $data = $this->repo->data($request);
         $this->_navAct = "home";
         $this->_data = $data['data'];
+       // dd($this->client);
         return $this->view('web.index');
 	}
 
@@ -57,7 +58,7 @@ class HomeController extends CoreController
         }
 
         $this->_goods = $goods;
-        $this->_myInventory = $this->client['integral'];
+        $this->_myIntegral = $this->client['integral'];
         $this->_SEO = [
             'title' => $goods->title
         ];
@@ -71,6 +72,7 @@ class HomeController extends CoreController
         $this->_SEO = ['title' => '我的订单查询'];
         $this->_navAct = "search";
 
+
         return $this->view('web.search');
     }
 
@@ -79,6 +81,8 @@ class HomeController extends CoreController
         $this->_navAct = "member";
         $this->_clientId = $this->client['id'];
         $this->_SEO = ['title' => '个人中心'];
+
+        $this->_clientId = $this->client['id'];
         return $this->view('web.member');
     }
 
@@ -101,9 +105,7 @@ class HomeController extends CoreController
         $usRepo->store(['client_id' => $clientId]);
 
         $addIntegral = 100;
-        $integral = $this->client['integral'] + $addIntegral;
-        Helper::setClient(['id' => $clientId, 'integral' => $integral]);
-
+        $integral = Helper::addIntegral($this->client, $addIntegral);
         return response()->json(["result" => 'success', 'message' => '签到成功', 'data' => ['integral' => $integral]]);
     }
 

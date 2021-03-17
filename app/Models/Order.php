@@ -17,4 +17,10 @@ class Order extends Model
     {
         return $this->belongsTo("App\\Models\\Goods", "gid", "id");
     }
+
+    function param()
+    {
+        return $this->hasOne("App\\Models\\PayParam", "id", "ppid");
+
+    }
 }

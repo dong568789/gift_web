@@ -24,7 +24,7 @@
     $router->get('search.html', 'HomeController@search');
     $router->get('search-order', 'OrderController@searchOrder');
     $router->post('order/store', 'OrderController@store');
-    $router->get('order/{order_id}', 'OrderController@index')->where('order_id', '[\d]+');;
+    $router->get('order/{order_id}', 'OrderController@order')->where('order_id', '[\d]+');;
     $router->post('pay/ali_notify', 'NotifyController@ali_notify');//支付宝支付回调
     $router->get('pay/ali_return', 'NotifyController@ali_return');//支付宝支付回调
     $router->post('pay/wx_notify', 'NotifyController@wx_notify');//微信支付回调

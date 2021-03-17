@@ -1,9 +1,12 @@
 <?php
 namespace App\Tools\Payment;
 
-use App\Models\Order;
+use App\Repositories\OrderRepository;
 use App\Tools\Helper;
+use Illuminate\Http\Request;
 use Omnipay\Omnipay;
+
+use App\Models\Order;
 
 use App\Repositories\PayParamRepository;
 
@@ -28,13 +31,13 @@ class WxPay {
          */
         $driver = 'WechatPay_Mweb';
         $gateway    = Omnipay::create($driver);
-        $this->setConfig($gateway);
-        $request  = $gateway->purchase($order);
-        $response = $request->send();
+        $ppid = $this->setConfig($gateway);
+        $response  = $gateway->purchase($order)->send();
         $data = $response->getData();
         if ($response->isSuccessful())
         {
-            return ['status' => true, 'code_url' => $data['mweb_url']];
+            return ['id' => $ppid, 'url' => Helper::parseWxUrl($data['mweb_url'], ['ip' =>
+                $order['spbill_create_ip']])];
         } else {
             throw new \Exception($data['return_msg']);
         }
@@ -50,6 +53,7 @@ class WxPay {
         $driver = 'WechatPay_Mweb';
         $gateway    = Omnipay::create($driver);
         $this->setConfig($gateway);
+
         $response = $gateway->completePurchase([
             'request_params' => file_get_contents('php://input')
         ])->send();
@@ -58,7 +62,7 @@ class WxPay {
 
             $result = $response->getRequestData();
             //pay success
-            logger()->info('wx-notify:' . print_r($response->getRequestData(), true));
+            logger()->info('wx-notify:' . print_r($result, true));
 
             $this->order['out_trade_no'] = Helper::getWxOrderId($result['out_trade_no']);
             $this->order['total_amount'] = $result['total_fee'] / 100;
@@ -78,5 +82,7 @@ class WxPay {
         $gateway->setAppId($param->value['appid']);
         $gateway->setMchId($param->value['mch_id']);
         $gateway->setApiKey($param->value['mch_key']);
+
+        return $param->id;
     }
 }

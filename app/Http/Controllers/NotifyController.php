@@ -10,11 +10,11 @@ class NotifyController extends  Controller{
 
     public function wx_notify(Request $request)
     {
-        $payment = new \App\Tools\Wxpay();
+        $payment = new \App\Tools\Payment\Wxpay();
         $resulst = $payment->notify($request);
 
         if($resulst){
-            (new OrderRepository)->callback($resulst->order);
+            (new OrderRepository)->callback($payment->order);
             return 'success';
         }
         return 'fail';
@@ -22,7 +22,7 @@ class NotifyController extends  Controller{
 
     public function ali_notice(Request $request)
     {
-        $payment = new \App\Tools\Alipay();
+        $payment = new \App\Tools\Payment\Alipay();
 
         $resulst = $payment->notify($request);
 
@@ -35,7 +35,7 @@ class NotifyController extends  Controller{
 
     public function ali_return(Request $request)
     {
-        $payment = new \App\Tools\Alipay();
+        $payment = new \App\Tools\Payment\Alipay();
 
         $resulst = $payment->notify($request);
 

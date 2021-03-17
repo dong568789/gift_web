@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string("goods_desc")->nullable()->comment="商品名称";
             $table->unsignedInteger("pay_type")->index()->comment="支付方式";
             $table->string('ip')->nullable()->comment="IP";
+            $table->integer('ppid')->comment="支付参数id";
             $table->timestamp('callback_at')->nullable()->comment="回调时间";
             $table->string('realname')->nullable()->comment="电话";
             $table->string('mobile')->nullable()->comment="电话";

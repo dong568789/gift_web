@@ -57,7 +57,7 @@ class OrderController extends CoreController
 
 	}
 
-	public function index(Request $request, $order_id)
+	public function order(Request $request, $order_id)
     {
         $oRepo = new OrderRepository();
         $order = $oRepo->findByOrderId($order_id);
@@ -70,10 +70,14 @@ class OrderController extends CoreController
 
         try{
             $result = $payment->run($order);
-            return redirect($result['code_url']);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }
+
+        $oRepo->update($order, ['ppid' => $result['id']]);
+        $this->_html = $result['html'] ?? '';
+        $this->_url = $result['url'];
+        return $this->view('web.pay');
     }
 
     public function searchOrder(Request $request)

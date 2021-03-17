@@ -1,9 +1,12 @@
 <?php
 namespace App\Tools\Payment;
 
-use App\Models\Order;
-use App\Repositories\PayParamRepository;
+use Illuminate\Http\Request;
 use Omnipay\Omnipay;
+
+use App\Models\Order;
+
+use App\Repositories\PayParamRepository;
 
 class AliPay {
 
@@ -12,21 +15,21 @@ class AliPay {
     public function pay(Order $order)
     {
         $gateway = Omnipay::create('Alipay_AopWap');
-        $this->setConfig($gateway);
+        $ppid = $this->setConfig($gateway);
 
-        return $gateway->purchase()->setBizContent([
+        $response = $gateway->purchase()->setBizContent([
             'subject'      => $order->goods_desc,
             'out_trade_no' => $order->order_id,
             'total_amount' => $order->amount,
             'product_code' => 'FAST_INSTANT_TRADE_PAY',
         ])->send();
 
-        //$url = $response->getRedirectUrl();
+        return ['id' => $ppid, 'url' => $response->getRedirectUrl()];
     }
 
     public function notify(Request $request)
     {
-        $gateway    = Omnipay::create('Alipay_AopWap');
+        $gateway = Omnipay::create('Alipay_AopWap');
         $this->setConfig($gateway);
         $response = $gateway->completePurchase([
             'request_params' => file_get_contents('php://input')
@@ -50,14 +53,16 @@ class AliPay {
     private function setConfig($gateway)
     {
         $ppRepo = new PayParamRepository();
-        $param = $ppRepo->getWxParam();
+        $param = $ppRepo->getAliParam();
         if (empty($param->value)) return ;
 
         $gateway->setSignType('RSA2'); // RSA/RSA2/MD5. Use certificate mode must set RSA2
         $gateway->setAppId($param->value->appid);
         $gateway->setPrivateKey($param->value->private_key);
         $gateway->setAlipayPublicKey($param->value->public_key); // Need not set this when used certificate mode
-        $gateway->setReturnUrl(url('order/ali_return'));
-        $gateway->setNotifyUrl(url('order/ali_notify'));
+        $gateway->setReturnUrl(url('pay/ali_return'));
+        $gateway->setNotifyUrl(url('pay/ali_notify'));
+
+        return $param->id;
     }
 }

@@ -118,7 +118,7 @@ class OrderRepository extends Repository {
             return self::CALLBACK_FAIL;
         }
 
-        return self::CALLBACK_SUCCESS;
         logger()->info('callbackCp:'.print_r($order->order_id, true));
+        return self::CALLBACK_SUCCESS;
     }
 }

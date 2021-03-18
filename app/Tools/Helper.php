@@ -117,7 +117,7 @@ class Helper {
         return [];
     }
 
-    public static function setClient(array $info, $minutes = 0)
+    public static function setClient(array $info, $minutes = 86400 * 7)
     {
         return Cookie::queue('client-info', json_encode($info), $minutes);
     }

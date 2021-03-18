@@ -25,7 +25,7 @@ class CoreController extends Controller {
     {
         if (!Helper::hashClient()) {
             $this->client = ['id' => mt_rand(90000, 99999), 'integral' => 8850];
-            Helper::setClient($this->client, 86400 * 7);
+            Helper::setClient($this->client);
         } else {
             $this->client = Helper::getClient();
         }

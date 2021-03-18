@@ -98,7 +98,8 @@
                         <p class="time_t2">:</p>
                         <p class="time_t1" id="time_t1b">36</p>
                         <p class="time_t2">:</p>
-                        <p class="time_t1" id="time_t1c">59</p></div>
+                        <p class="time_t1" id="time_t1c">59</p>
+                    </div>
                 </div>
             </div>
             <!-- 选择按钮 -->
@@ -200,29 +201,29 @@
                     });
                     var dateTime = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
                     setInterval(function() {
-                                var endTime = new Date(dateTime.getTime());
-                                var nowTime = new Date();
-                                var nMS = endTime.getTime() - nowTime.getTime();
-                                var myD = Math.floor(nMS / (1000 * 60 * 60 * 24));
-                                var myH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
-                                var myM = Math.floor(nMS / (1000 * 60)) % 60;
-                                var myS = Math.floor(nMS / 1000) % 60;
-                                var myMS = Math.floor(nMS / 100) % 10;
-                                if (myD >= 0) {
-                                    if (myH <= 9) myH = '0' + myH;
-                                    if (myM <= 9) myM = '0' + myM;
-                                    if (myS <= 9) myS = '0' + myS;
+                            var endTime = new Date(dateTime.getTime());
+                            var nowTime = new Date();
+                            var nMS = endTime.getTime() - nowTime.getTime();
+                            var myD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+                            var myH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+                            var myM = Math.floor(nMS / (1000 * 60)) % 60;
+                            var myS = Math.floor(nMS / 1000) % 60;
+                            var myMS = Math.floor(nMS / 100) % 10;
+                            if (myD >= 0) {
+                                if (myH <= 9) myH = '0' + myH;
+                                if (myM <= 9) myM = '0' + myM;
+                                if (myS <= 9) myS = '0' + myS;
 
-                                    $("#time_t1a").text(myH);
-                                    $("#time_t1b").text(myM);
-                                    $("#time_t1c").text(myS);
-                                } else {
-                                    $("#time_t1a").text("00");
-                                    $("#time_t1b").text("00");
-                                    $("#time_t1c").text("00");
-                                }
-                            },
-                            100);
+                                $("#time_t1a").text(myH);
+                                $("#time_t1b").text(myM);
+                                $("#time_t1c").text(myS);
+                            } else {
+                                $("#time_t1a").text("00");
+                                $("#time_t1b").text("00");
+                                $("#time_t1c").text("00");
+                            }
+                        },
+                        100);
                 });
             </script>
         </div>

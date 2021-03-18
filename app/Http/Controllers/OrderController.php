@@ -75,7 +75,7 @@ class OrderController extends CoreController
         }
 
         $oRepo->update($order, ['ppid' => $result['id']]);
-        logger()->info("order:", print_r($result, 1));
+        logger()->info("order:" . print_r($result, 1));
         $this->_html = $result['html'] ?? '';
         $this->_redirect = $result['url'] ?? '';
         $this->_jsData = $result['js_data'] ?? '[]';

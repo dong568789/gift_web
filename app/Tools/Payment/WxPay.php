@@ -36,6 +36,9 @@ class WxPay {
         $data = $response->getData();
         if ($response->isSuccessful())
         {
+            if(Helper::is_weixin()){
+                return ['id' => $ppid, 'js_data' => $response->getJsOrderData()];
+            }
             return ['id' => $ppid, 'url' => Helper::parseWxUrl($data['mweb_url'], ['ip' =>
                 $order['spbill_create_ip']])];
         } else {

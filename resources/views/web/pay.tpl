@@ -18,13 +18,7 @@
             return false;
         }
     }
-    layer.open({
-        content: '支付成功'
-        ,btn: '确定',
-        end: function (index) {
-            window.location.href = "<{url('search')}>.html";
-        }
-    });
+
     if(is_weixn()){
         WeixinJSBridge.invoke(
             'getBrandWCPayRequest',JSON.parse('<{$_jsData nofilter}>'),function(res){
